@@ -1,0 +1,144 @@
+/* ===== ShopEasy — Global Styles ===== */
+/* Design System: Minimalista · Negro/Blanco/Grises */
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Colores base */
+  --black:     #0f0f0f;
+  --white:     #fafafa;
+  --gray-50:   #f9f9f7;
+  --gray-100:  #f5f5f5;
+  --gray-200:  #e5e5e5;
+  --gray-400:  #a3a3a3;
+  --gray-600:  #525252;
+
+  /* Tipografía */
+  --font-sans:    'DM Sans', sans-serif;
+  --font-display: 'Playfair Display', serif;
+
+  /* Espaciado */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  /* Bordes */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  /* Transiciones */
+  --transition: 150ms ease;
+
+  /* Layout */
+  --max-width: 1100px;
+  --navbar-height: 56px;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--white);
+  color: var(--black);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: var(--font-sans);
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ===== Utilidades ===== */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-xl);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ===== Componentes base ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 9px 20px;
+  font-size: 13px;
+  font-family: var(--font-sans);
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+}
+.btn-primary:hover { opacity: 0.82; }
+
+.btn-outline {
+  background: transparent;
+  color: var(--black);
+  border-color: var(--gray-200);
+}
+.btn-outline:hover { border-color: var(--black); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--gray-600);
+  border-color: transparent;
+}
+.btn-ghost:hover { color: var(--black); }
+
+/* Badge */
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  color: var(--gray-600);
+}
+
+/* Divider */
+.divider {
+  border: none;
+  border-top: 1px solid var(--gray-200);
+  margin: var(--space-xl) 0;
+}
