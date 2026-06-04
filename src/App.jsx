@@ -7,10 +7,8 @@ import Catalog from './pages/Catalog.jsx'
 import ProductDetail from './pages/ProductDetail.jsx'
 import Cart from './pages/Cart.jsx'
 import Checkout from './pages/Checkout.jsx'
-import {
-  OrderConfirmation,
-  NotFound,
-} from './pages/_stubs.jsx'
+import OrderConfirmation from './pages/OrderConfirmation.jsx'
+import { NotFound } from './pages/_stubs.jsx'
 
 export default function App() {
   return (
