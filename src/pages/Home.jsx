@@ -89,7 +89,7 @@ const s = {
     fontFamily: "'DM Sans', sans-serif",
   },
 
-  /* Info bar */
+
   infoBar: {
     display: 'flex',
     justifyContent: 'center',
@@ -114,30 +114,12 @@ export default function Home() {
         <section style={s.hero}>
           <span style={s.tag}>Prototipo académico · Sala 14</span>
           <h1 style={s.h1}>Tu tienda,<br />sin complicaciones.</h1>
-          <p style={s.subtitle}>
-            ShopEasy simula un flujo de compra moderno: catálogo,
-            carrito, pago y confirmación en una SPA construida con React + Vite.
-          </p>
           <div style={s.cta}>
             <Link to="/catalog" className="btn btn-primary">Ver catálogo</Link>
             <Link to="/cart"    className="btn btn-outline">Mi carrito</Link>
           </div>
         </section>
 
-        {/* Stats */}
-        <div style={s.statsBar}>
-          {[
-            { num: '24', label: 'Productos' },
-            { num: '6',  label: 'Categorías' },
-            { num: '4',  label: 'Pasos de compra' },
-            { num: '1',  label: 'SPA' },
-          ].map(({ num, label }) => (
-            <div key={label} style={s.stat}>
-              <div style={s.statNum}>{num}</div>
-              <div style={s.statLabel}>{label}</div>
-            </div>
-          ))}
-        </div>
 
         {/* Featured products */}
         <div style={s.sectionHeader}>
@@ -182,13 +164,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Info bar */}
-      <div style={s.infoBar}>
-        <span>✓ Envío simulado gratis</span>
-        <span>✓ Pago 100% seguro (sandbox)</span>
-        <span>✓ Devoluciones en 30 días</span>
-        <span>✓ Datos en JSON Server</span>
-      </div>
     </>
   )
 }

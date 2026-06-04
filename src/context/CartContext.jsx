@@ -1,12 +1,10 @@
 import { createContext, useContext, useReducer } from 'react'
 
-
 const initialState = {
-  items: [],      
+  items: [],
   isOpen: false,
 }
 
-/* ===== Reducer ===== */
 function cartReducer(state, action) {
   switch (action.type) {
 
@@ -59,19 +57,18 @@ function cartReducer(state, action) {
   }
 }
 
-/* ===== Contexto ===== */
 const CartContext = createContext(null)
 
 export function CartProvider({ children }) {
   const [state, dispatch] = useReducer(cartReducer, initialState)
 
-  const addItem    = (product)          => dispatch({ type: 'ADD_ITEM',       payload: product })
-  const removeItem = (productId)        => dispatch({ type: 'REMOVE_ITEM',    payload: productId })
-  const updateQty  = (id, quantity)     => dispatch({ type: 'UPDATE_QUANTITY', payload: { id, quantity } })
-  const clearCart  = ()                 => dispatch({ type: 'CLEAR_CART' })
+  const addItem    = (product)      => dispatch({ type: 'ADD_ITEM',        payload: product })
+  const removeItem = (productId)    => dispatch({ type: 'REMOVE_ITEM',     payload: productId })
+  const updateQty  = (id, quantity) => dispatch({ type: 'UPDATE_QUANTITY', payload: { id, quantity } })
+  const clearCart  = ()             => dispatch({ type: 'CLEAR_CART' })
 
-  const totalItems   = state.items.reduce((acc, i) => acc + i.quantity, 0)
-  const totalPrice   = state.items.reduce((acc, i) => acc + i.product.price * i.quantity, 0)
+  const totalItems = state.items.reduce((acc, i) => acc + i.quantity, 0)
+  const totalPrice = state.items.reduce((acc, i) => acc + i.product.price * i.quantity, 0)
 
   return (
     <CartContext.Provider value={{

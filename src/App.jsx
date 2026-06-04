@@ -4,9 +4,9 @@ import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import Home from './pages/Home.jsx'
 import Catalog from './pages/Catalog.jsx'
+import ProductDetail from './pages/ProductDetail.jsx'
+import Cart from './pages/Cart.jsx'
 import {
-  ProductDetail,
-  Cart,
   Checkout,
   OrderConfirmation,
   NotFound,
