@@ -9,7 +9,6 @@ const stub = (title, next) => function StubPage() {
   )
 }
 
-export const Checkout          = stub('Checkout',              'Próximo commit — Paso 4')
 export const OrderConfirmation = stub('Confirmación de orden', 'Próximo commit — Paso 5')
 
 export function NotFound() {
