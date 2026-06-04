@@ -1,106 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-
-const s = {
-  page: { maxWidth: '1100px', margin: '0 auto', padding: '2rem 2rem 4rem' },
-  hero: {
-    textAlign: 'center', padding: '3rem 0 2.5rem',
-    borderBottom: '1px solid #e5e5e5', marginBottom: '2.5rem',
-  },
-  iconCircle: {
-    width: '64px', height: '64px', borderRadius: '50%',
-    background: '#0f0f0f', color: '#fafafa',
-    display: 'flex', alignItems: 'center', justifyContent: 'center',
-    fontSize: '1.75rem', margin: '0 auto 1.25rem',
-  },
-  title: {
-    fontFamily: "'Playfair Display', serif",
-    fontSize: '2rem', letterSpacing: '-0.02em', marginBottom: '0.5rem',
-  },
-  subtitle: { fontSize: '14px', color: '#525252', marginBottom: '0.5rem' },
-  orderId: {
-    display: 'inline-block', fontSize: '12px', color: '#a3a3a3',
-    border: '1px solid #e5e5e5', borderRadius: '2px',
-    padding: '3px 10px', fontFamily: 'monospace', marginTop: '0.5rem',
-  },
-  layout: {
-    display: 'grid', gridTemplateColumns: '1fr 340px',
-    gap: '2.5rem', alignItems: 'start',
-  },
-  section: {
-    border: '1px solid #e5e5e5', borderRadius: '2px',
-    marginBottom: '1.25rem', overflow: 'hidden',
-  },
-  sectionHeader: {
-    padding: '0.75rem 1.25rem', background: '#f5f5f5',
-    borderBottom: '1px solid #e5e5e5', fontSize: '11px',
-    fontWeight: '500', textTransform: 'uppercase',
-    letterSpacing: '0.08em', color: '#525252',
-  },
-  sectionBody: { padding: '1.25rem' },
-  itemRow: {
-    display: 'flex', alignItems: 'center', gap: '1rem',
-    paddingBottom: '1rem', marginBottom: '1rem',
-    borderBottom: '1px solid #f5f5f5',
-  },
-  itemEmoji: {
-    width: '48px', height: '48px', background: '#f5f5f5',
-    borderRadius: '2px', display: 'flex', alignItems: 'center',
-    justifyContent: 'center', fontSize: '1.5rem', flexShrink: 0,
-  },
-  itemInfo: { flex: 1 },
-  itemName: { fontSize: '13px', fontWeight: '500', marginBottom: '2px' },
-  itemCat:  { fontSize: '11px', color: '#a3a3a3' },
-  itemQty:  {
-    fontSize: '11px', color: '#a3a3a3', background: '#f5f5f5',
-    padding: '2px 8px', borderRadius: '2px',
-  },
-  itemPrice: { fontFamily: "'Playfair Display', serif", fontSize: '0.95rem' },
-  infoRow: { display: 'flex', justifyContent: 'space-between', fontSize: '13px', marginBottom: '10px' },
-  infoKey: { color: '#a3a3a3' },
-  infoVal: { color: '#0f0f0f', fontWeight: '500' },
-  summaryCard: {
-    border: '1px solid #e5e5e5', borderRadius: '2px',
-    overflow: 'hidden', position: 'sticky', top: '72px',
-  },
-  summaryHeader: {
-    padding: '0.75rem 1.25rem', background: '#0f0f0f',
-    fontSize: '11px', fontWeight: '500', textTransform: 'uppercase',
-    letterSpacing: '0.08em', color: '#fafafa',
-  },
-  summaryBody: { padding: '1.25rem' },
-  summaryRow: {
-    display: 'flex', justifyContent: 'space-between',
-    fontSize: '13px', marginBottom: '10px', color: '#525252',
-  },
-  divider: { border: 'none', borderTop: '1px solid #e5e5e5', margin: '1rem 0' },
-  totalRow: {
-    display: 'flex', justifyContent: 'space-between',
-    fontFamily: "'Playfair Display', serif",
-    fontSize: '1.2rem', marginBottom: '1.25rem',
-  },
-  actions: { display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '1.5rem' },
-  btnPrimary: {
-    display: 'block', textAlign: 'center', padding: '12px',
-    background: '#0f0f0f', color: '#fafafa', border: 'none',
-    borderRadius: '2px', fontSize: '13px', cursor: 'pointer',
-    textDecoration: 'none', fontFamily: "'DM Sans', sans-serif",
-  },
-  btnOutline: {
-    display: 'block', textAlign: 'center', padding: '10px',
-    background: 'transparent', color: '#525252',
-    border: '1px solid #e5e5e5', borderRadius: '2px',
-    fontSize: '12px', textDecoration: 'none',
-    fontFamily: "'DM Sans', sans-serif",
-  },
-  empty: { textAlign: 'center', padding: '5rem 0' },
-  emptyTitle: {
-    fontFamily: "'Playfair Display', serif",
-    fontSize: '1.5rem', marginBottom: '0.5rem',
-  },
-  emptyText: { color: '#a3a3a3', fontSize: '14px', marginBottom: '1.5rem' },
-  note: { fontSize: '11px', color: '#a3a3a3', textAlign: 'center', marginTop: '1rem', lineHeight: 1.6 },
-}
+import '../styles/pages/OrderConfirmation.css'
 
 const PAY_LABELS = {
   card:   '💳 Tarjeta de crédito/débito',
@@ -121,10 +21,10 @@ export default function OrderConfirmation() {
 
   if (!order) {
     return (
-      <div style={s.page}>
-        <div style={s.empty}>
-          <h2 style={s.emptyTitle}>No hay orden para mostrar</h2>
-          <p style={s.emptyText}>Parece que llegaste aquí sin completar una compra.</p>
+      <div className="order-page">
+        <div className="order-empty">
+          <h2 className="order-empty-title">No hay orden para mostrar</h2>
+          <p className="order-empty-text">Parece que llegaste aquí sin completar una compra.</p>
           <Link to="/catalog" className="btn btn-primary">Ver catálogo</Link>
         </div>
       </div>
@@ -137,43 +37,41 @@ export default function OrderConfirmation() {
   })
 
   return (
-    <div style={s.page}>
-      <div style={s.hero}>
-        <div style={s.iconCircle}>✓</div>
-        <h1 style={s.title}>¡Orden confirmada!</h1>
-        <p style={s.subtitle}>Gracias por tu compra. Tu pedido ha sido procesado exitosamente.</p>
-        <span style={s.orderId}>{order.id}</span>
+    <div className="order-page">
+      <div className="order-hero">
+        <div className="order-icon-circle">✓</div>
+        <h1 className="order-title">¡Orden confirmada!</h1>
+        <p className="order-subtitle">Gracias por tu compra. Tu pedido ha sido procesado exitosamente.</p>
+        <span className="order-id">{order.id}</span>
       </div>
 
-      <div style={s.layout}>
+      <div className="order-layout">
         <div>
           {/* Productos */}
-          <div style={s.section}>
-            <div style={s.sectionHeader}>Productos ordenados</div>
-            <div style={s.sectionBody}>
+          <div className="order-section">
+            <div className="order-section-header">Productos ordenados</div>
+            <div className="order-section-body">
               {order.items.map(({ product, quantity }, i) => (
-                <div key={product.id} style={{
-                  ...s.itemRow,
-                  ...(i === order.items.length - 1
-                    ? { borderBottom: 'none', paddingBottom: 0, marginBottom: 0 }
-                    : {})
-                }}>
-                  <div style={s.itemEmoji}>{product.emoji}</div>
-                  <div style={s.itemInfo}>
-                    <div style={s.itemName}>{product.name}</div>
-                    <div style={s.itemCat}>{product.category}</div>
+                <div
+                  key={product.id}
+                  className={`order-item-row${i === order.items.length - 1 ? ' order-item-row--last' : ''}`}
+                >
+                  <div className="order-item-emoji">{product.emoji}</div>
+                  <div className="order-item-info">
+                    <div className="order-item-name">{product.name}</div>
+                    <div className="order-item-cat">{product.category}</div>
                   </div>
-                  <span style={s.itemQty}>×{quantity}</span>
-                  <span style={s.itemPrice}>${(product.price * quantity).toFixed(2)}</span>
+                  <span className="order-item-qty">×{quantity}</span>
+                  <span className="order-item-price">${(product.price * quantity).toFixed(2)}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Envío */}
-          <div style={s.section}>
-            <div style={s.sectionHeader}>Información de envío</div>
-            <div style={s.sectionBody}>
+          <div className="order-section">
+            <div className="order-section-header">Información de envío</div>
+            <div className="order-section-body">
               {[
                 ['Destinatario', `${order.shipping.firstName} ${order.shipping.lastName}`],
                 ['Correo',        order.shipping.email],
@@ -182,18 +80,18 @@ export default function OrderConfirmation() {
                 ['Código postal', order.shipping.zip],
                 ['País',          order.shipping.country],
               ].map(([k, v]) => (
-                <div key={k} style={s.infoRow}>
-                  <span style={s.infoKey}>{k}</span>
-                  <span style={s.infoVal}>{v}</span>
+                <div key={k} className="order-info-row">
+                  <span className="order-info-key">{k}</span>
+                  <span className="order-info-val">{v}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Pago */}
-          <div style={s.section}>
-            <div style={s.sectionHeader}>Método de pago</div>
-            <div style={s.sectionBody}>
+          <div className="order-section">
+            <div className="order-section-header">Método de pago</div>
+            <div className="order-section-body">
               {[
                 ['Método', PAY_LABELS[order.payment.method] || order.payment.method],
                 ['Estado', '✓ Pago simulado exitoso'],
@@ -202,9 +100,9 @@ export default function OrderConfirmation() {
                   ? [['Tarjeta', `**** **** **** ${order.payment.last4}`]]
                   : []),
               ].map(([k, v]) => (
-                <div key={k} style={s.infoRow}>
-                  <span style={s.infoKey}>{k}</span>
-                  <span style={s.infoVal}>{v}</span>
+                <div key={k} className="order-info-row">
+                  <span className="order-info-key">{k}</span>
+                  <span className="order-info-val">{v}</span>
                 </div>
               ))}
             </div>
@@ -212,19 +110,19 @@ export default function OrderConfirmation() {
         </div>
 
         {/* Totales */}
-        <div style={s.summaryCard}>
-          <div style={s.summaryHeader}>Resumen de la orden</div>
-          <div style={s.summaryBody}>
-            <div style={s.summaryRow}><span>Subtotal</span><span>${order.subtotal.toFixed(2)}</span></div>
-            <div style={s.summaryRow}><span>Envío</span><span>{order.shippingCost === 0 ? 'Gratis' : `$${order.shippingCost.toFixed(2)}`}</span></div>
-            <div style={s.summaryRow}><span>Impuesto (13%)</span><span>${order.tax.toFixed(2)}</span></div>
-            <hr style={s.divider} />
-            <div style={s.totalRow}><span>Total</span><span>${order.total.toFixed(2)}</span></div>
-            <div style={s.actions}>
-              <Link to="/" style={s.btnPrimary}>Volver al inicio</Link>
-              <Link to="/catalog" style={s.btnOutline}>Seguir comprando</Link>
+        <div className="order-summary-card">
+          <div className="order-summary-header">Resumen de la orden</div>
+          <div className="order-summary-body">
+            <div className="order-summary-row"><span>Subtotal</span><span>${order.subtotal.toFixed(2)}</span></div>
+            <div className="order-summary-row"><span>Envío</span><span>{order.shippingCost === 0 ? 'Gratis' : `$${order.shippingCost.toFixed(2)}`}</span></div>
+            <div className="order-summary-row"><span>Impuesto (13%)</span><span>${order.tax.toFixed(2)}</span></div>
+            <hr className="order-divider" />
+            <div className="order-total-row"><span>Total</span><span>${order.total.toFixed(2)}</span></div>
+            <div className="order-actions">
+              <Link to="/" className="order-btn-primary">Volver al inicio</Link>
+              <Link to="/catalog" className="order-btn-outline">Seguir comprando</Link>
             </div>
-            <p style={s.note}>🔒 Transacción simulada<br />Ningún dato real fue procesado.</p>
+            <p className="order-note">🔒 Transacción simulada<br />Ningún dato real fue procesado.</p>
           </div>
         </div>
       </div>

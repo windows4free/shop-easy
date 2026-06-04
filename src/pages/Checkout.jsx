@@ -107,7 +107,7 @@ export default function Checkout() {
 
       <div className="checkout-layout">
         <div>
-          {/*Envío ── */}
+          {/* ── PASO 1: Envío ── */}
           {step === 1 && (
             <>
               <div className="checkout-section">
@@ -196,7 +196,7 @@ export default function Checkout() {
             </>
           )}
 
-          {/*Pago*/}
+          {/* ── PASO 2: Pago ── */}
           {step === 2 && (
             <>
               <div className="checkout-section">
