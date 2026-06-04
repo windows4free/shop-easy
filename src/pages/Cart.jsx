@@ -104,7 +104,6 @@ export default function Cart() {
 
           <Link to="/catalog" className="cart-continue-btn">← Seguir comprando</Link>
 
-          <p className="cart-secure-note">🔒 Pago 100% seguro · Simulado (sandbox)</p>
         </div>
       </div>
     </div>

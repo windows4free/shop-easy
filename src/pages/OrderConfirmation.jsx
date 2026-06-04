@@ -3,9 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import '../styles/pages/OrderConfirmation.css'
 
 const PAY_LABELS = {
-  card:   '💳 Tarjeta de crédito/débito',
-  paypal: '🅿 PayPal',
-  cash:   '💵 Contra entrega',
+  card:   'Tarjeta de crédito/débito',
 }
 
 export default function OrderConfirmation() {
@@ -94,7 +92,7 @@ export default function OrderConfirmation() {
             <div className="order-section-body">
               {[
                 ['Método', PAY_LABELS[order.payment.method] || order.payment.method],
-                ['Estado', '✓ Pago simulado exitoso'],
+                ['Estado', '✓ Pago exitoso'],
                 ['Fecha',  date],
                 ...(order.payment.method === 'card'
                   ? [['Tarjeta', `**** **** **** ${order.payment.last4}`]]
@@ -122,7 +120,7 @@ export default function OrderConfirmation() {
               <Link to="/" className="order-btn-primary">Volver al inicio</Link>
               <Link to="/catalog" className="order-btn-outline">Seguir comprando</Link>
             </div>
-            <p className="order-note">🔒 Transacción simulada<br />Ningún dato real fue procesado.</p>
+            
           </div>
         </div>
       </div>

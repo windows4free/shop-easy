@@ -204,8 +204,6 @@ export default function Checkout() {
                 <div className="checkout-pay-methods">
                   {[
                     { id: 'card',   label: '💳 Tarjeta' },
-                    { id: 'paypal', label: '🅿 PayPal' },
-                    { id: 'cash',   label: '💵 Contra entrega' },
                   ].map(m => (
                     <button
                       key={m.id}
@@ -218,7 +216,7 @@ export default function Checkout() {
                 </div>
 
                 <div className="checkout-sandbox-note">
-                  🔒 <strong>Modo sandbox</strong> — Los datos no se procesan realmente.<br />
+                   <strong>Modo sandbox</strong> — Los datos no se procesan realmente.<br />
                   Usa: <code>4242 4242 4242 4242</code> · Exp: <code>12/26</code> · CVV: <code>123</code>
                 </div>
 
@@ -319,9 +317,7 @@ export default function Checkout() {
           <div className="checkout-summary-row"><span>Envío</span><span>{shipping === 0 ? 'Gratis' : `$${shipping.toFixed(2)}`}</span></div>
           <div className="checkout-summary-row"><span>Impuesto (13%)</span><span>${tax.toFixed(2)}</span></div>
           <hr className="checkout-divider" />
-          <div className="checkout-total-row"><span>Total</span><span>${total.toFixed(2)}</span></div>
-          <p className="checkout-secure-note">🔒 Pago simulado · Sandbox</p>
-        </div>
+          <div className="checkout-total-row"><span>Total</span><span>${total.toFixed(2)}</span></div>        </div>
       </div>
     </div>
   )
