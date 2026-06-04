@@ -37,7 +37,7 @@ const styles = {
 
 const TEAM = [
   'D. Lanza', 'W. Vargas', 'R. Izaguirre',
-  'K. Urbina', 'M.E. Calix', 'M. Fonseca',
+  'K. Urbina', 'M.E. Calix', 
 ]
 
 export default function Footer() {
