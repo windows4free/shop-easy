@@ -16,9 +16,7 @@ export default function ProductCard({ product }) {
 
   return (
     <div className="pcard">
-      <Link to={`/product/${product.id}`} className="pcard-img">
-        {product.emoji}
-      </Link>
+<img src={`/src/images/${product.image}`} alt={product.name} />
 
       <div className="pcard-cat">{product.category}</div>
 

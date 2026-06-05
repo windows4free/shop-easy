@@ -31,7 +31,7 @@ export default function Home() {
           {FEATURED.map(product => (
             <div key={product.id} className="home-card">
               <Link to={`/product/${product.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                <div className="home-card-img">{product.emoji}</div>
+                <img src={`/src/images/${product.image}`} alt={product.name} />
                 <div className="home-card-cat">{product.category}</div>
                 <div className="home-card-name">{product.name}</div>
               </Link>

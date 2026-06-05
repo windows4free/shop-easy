@@ -45,7 +45,7 @@ export default function ProductDetail() {
       </nav>
 
       <div className="detail-layout">
-        <div className="detail-img-box">{product.emoji}</div>
+        <img src={`/src/images/${product.image}`} alt={product.name} />
 
         <div>
           <div className="detail-cat">{product.category}</div>
