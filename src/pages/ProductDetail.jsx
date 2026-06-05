@@ -69,7 +69,7 @@ export default function ProductDetail() {
 
           <div className="detail-meta">
             {[
-              ['Disponibilidad', `L{product.stock} unidades`],
+              ['Disponibilidad', `${product.stock} unidades`],
               ['Categoría',      product.category],
               ['Envío',          'Gratis (simulado)'],
               ['Devoluciones',   '30 días'],
