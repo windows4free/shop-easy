@@ -36,14 +36,14 @@
 
 ## Equipo de Desarrollo
 
-| Nombre | Rol |
-|---|---|
-| David Lanza | Desarrollador Frontend |
-| Wilson Vargas | Desarrollador Frontend |
-| Reinaldo Izaguirre | Desarrollador Backend / API |
-| Kenneth Urbina | Diseño UI/UX |
-| Maria Elena Calix | Documentación y QA |
-| Marbely Fonseca | Integración de Pagos |
+| Nombre |
+|---|
+| David Lanza 
+| Wilson Vargas 
+| Reinaldo Izaguirre
+| Kenneth Urbina 
+| Maria Elena Calix 
+| Marbely Fonseca 
 
 ---
 

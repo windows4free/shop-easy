@@ -50,7 +50,7 @@ export default function ProductDetail() {
         <div>
           <div className="detail-cat">{product.category}</div>
           <h1 className="detail-name">{product.name}</h1>
-          <div className="detail-price">${product.price.toFixed(2)}</div>
+          <div className="detail-price">L{product.price.toFixed(2)}</div>
           <p className="detail-desc">{product.description}</p>
 
           <div className="detail-qty-row">
@@ -69,7 +69,7 @@ export default function ProductDetail() {
 
           <div className="detail-meta">
             {[
-              ['Disponibilidad', `${product.stock} unidades`],
+              ['Disponibilidad', `L{product.stock} unidades`],
               ['Categoría',      product.category],
               ['Envío',          'Gratis (simulado)'],
               ['Devoluciones',   '30 días'],

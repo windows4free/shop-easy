@@ -36,7 +36,7 @@ export default function Home() {
                 <div className="home-card-name">{product.name}</div>
               </Link>
               <div className="home-card-footer">
-                <span className="home-price">${product.price.toFixed(2)}</span>
+                <span className="home-price">L{product.price.toFixed(2)}</span>
                 <button className="home-add-btn" onClick={() => addItem(product)}>
                   + Carrito
                 </button>

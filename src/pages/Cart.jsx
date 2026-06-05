@@ -43,7 +43,7 @@ export default function Cart() {
               <div className="cart-item-info">
                 <div className="cart-item-emoji">{product.emoji}</div>
                 <div>
-                  <Link to={`/product/${product.id}`} className="cart-item-name">
+                  <Link to={`/product/L{product.id}`} className="cart-item-name">
                     {product.name}
                   </Link>
                   <span className="cart-item-cat">{product.category}</span>
@@ -56,7 +56,7 @@ export default function Cart() {
                 <button className="cart-qty-btn cart-qty-btn--no-left" onClick={() => updateQty(product.id, quantity + 1)}>+</button>
               </div>
 
-              <span className="cart-item-price">${(product.price * quantity).toFixed(2)}</span>
+              <span className="cart-item-price">L{(product.price * quantity).toFixed(2)}</span>
 
               <button className="cart-remove-btn" onClick={() => removeItem(product.id)}>×</button>
             </div>
@@ -74,7 +74,7 @@ export default function Cart() {
 
           <div className="cart-summary-row">
             <span className="cart-summary-key">Subtotal</span>
-            <span className="cart-summary-val">${totalPrice.toFixed(2)}</span>
+            <span className="cart-summary-val">L{totalPrice.toFixed(2)}</span>
           </div>
           <div className="cart-summary-row">
             <span className="cart-summary-key">Envío</span>
@@ -82,12 +82,12 @@ export default function Cart() {
           </div>
           <div className="cart-summary-row">
             <span className="cart-summary-key">Impuesto (13%)</span>
-            <span className="cart-summary-val">${tax.toFixed(2)}</span>
+            <span className="cart-summary-val">L{tax.toFixed(2)}</span>
           </div>
 
           {totalPrice <= 50 && (
             <p className="cart-free-shipping-note">
-              Agrega ${(50 - totalPrice).toFixed(2)} más para envío gratis
+              Agrega L{(50 - totalPrice).toFixed(2)} más para envío gratis
             </p>
           )}
 

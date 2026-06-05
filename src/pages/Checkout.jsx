@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext.jsx'
 import '../styles/pages/Checkout.css'
 
-const formatCard   = v => v.replace(/\D/g, '').slice(0, 16).replace(/(.{4})/g, '$1 ').trim()
+const formatCard   = v => v.replace(/\D/g, '').slice(0, 16).replace(/(.{4})/g, 'L1 ').trim()
 const formatExpiry = v => {
   const c = v.replace(/\D/g, '').slice(0, 4)
   return c.length >= 3 ? c.slice(0, 2) + '/' + c.slice(2) : c
@@ -203,7 +203,7 @@ export default function Checkout() {
                 <div className="checkout-section-title">Método de pago</div>
                 <div className="checkout-pay-methods">
                   {[
-                    { id: 'card',   label: '💳 Tarjeta' },
+                    { id: 'card',   label: 'Tarjeta' },
                   ].map(m => (
                     <button
                       key={m.id}
@@ -309,7 +309,7 @@ export default function Checkout() {
               <span style={{ marginRight: '6px' }}>{product.emoji}</span>
               <span className="checkout-summary-item-name">{product.name}</span>
               <span className="checkout-summary-item-qty">×{quantity}</span>
-              <span className="checkout-summary-item-price">${(product.price * quantity).toFixed(2)}</span>
+              <span className="checkout-summary-item-price">L{(product.price * quantity).toFixed(2)}</span>
             </div>
           ))}
           <hr className="checkout-divider" />

@@ -16,20 +16,20 @@ export default function ProductCard({ product }) {
 
   return (
     <div className="pcard">
-      <Link to={`/product/${product.id}`} className="pcard-img">
+      <Link to={`/product/L{product.id}`} className="pcard-img">
         {product.emoji}
       </Link>
 
       <div className="pcard-cat">{product.category}</div>
 
-      <Link to={`/product/${product.id}`} className="pcard-name">
+      <Link to={`/product/L{product.id}`} className="pcard-name">
         {product.name}
       </Link>
 
       <p className="pcard-desc">{product.description}</p>
 
       <div className="pcard-footer">
-        <span className="pcard-price">${product.price.toFixed(2)}</span>
+        <span className="pcard-price">L{product.price.toFixed(2)}</span>
 
         {added
           ? <span className="pcard-added">✓ Agregado</span>

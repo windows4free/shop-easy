@@ -60,7 +60,7 @@ export default function OrderConfirmation() {
                     <div className="order-item-cat">{product.category}</div>
                   </div>
                   <span className="order-item-qty">×{quantity}</span>
-                  <span className="order-item-price">${(product.price * quantity).toFixed(2)}</span>
+                  <span className="order-item-price">L{(product.price * quantity).toFixed(2)}</span>
                 </div>
               ))}
             </div>
@@ -111,11 +111,11 @@ export default function OrderConfirmation() {
         <div className="order-summary-card">
           <div className="order-summary-header">Resumen de la orden</div>
           <div className="order-summary-body">
-            <div className="order-summary-row"><span>Subtotal</span><span>${order.subtotal.toFixed(2)}</span></div>
+            <div className="order-summary-row"><span>Subtotal</span><span>L{order.subtotal.toFixed(2)}</span></div>
             <div className="order-summary-row"><span>Envío</span><span>{order.shippingCost === 0 ? 'Gratis' : `$${order.shippingCost.toFixed(2)}`}</span></div>
-            <div className="order-summary-row"><span>Impuesto (13%)</span><span>${order.tax.toFixed(2)}</span></div>
+            <div className="order-summary-row"><span>Impuesto (13%)</span><span>L{order.tax.toFixed(2)}</span></div>
             <hr className="order-divider" />
-            <div className="order-total-row"><span>Total</span><span>${order.total.toFixed(2)}</span></div>
+            <div className="order-total-row"><span>Total</span><span>L{order.total.toFixed(2)}</span></div>
             <div className="order-actions">
               <Link to="/" className="order-btn-primary">Volver al inicio</Link>
               <Link to="/catalog" className="order-btn-outline">Seguir comprando</Link>
