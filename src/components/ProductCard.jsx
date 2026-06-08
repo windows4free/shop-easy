@@ -16,7 +16,17 @@ export default function ProductCard({ product }) {
 
   return (
     <div className="pcard">
-<img src={`/src/images/${product.image}`} alt={product.name} />
+      <Link to={`/product/${product.id}`} className="pcard-img-link">
+        <img
+          src={`/images/${product.image}`}
+          alt={product.name}
+          className="pcard-img"
+          loading="lazy"
+          decoding="async"
+          width={400}
+          height={400}
+        />
+      </Link>
 
       <div className="pcard-cat">{product.category}</div>
 

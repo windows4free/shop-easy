@@ -13,17 +13,26 @@
   background: #f5f5f5;
 }
 
-.pcard-img {
+.pcard-img-link {
+  display: block;
   width: 100%;
   aspect-ratio: 1;
   background: #f5f5f5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
   margin-bottom: 1rem;
   border-radius: 2px;
-  text-decoration: none;
+  overflow: hidden;
+}
+
+.pcard-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 300ms ease;
+}
+
+.pcard-img-link:hover .pcard-img {
+  transform: scale(1.04);
 }
 
 .pcard-cat {

@@ -7,7 +7,7 @@ export const PRODUCTS = [
     "description": "Audífonos inalámbricos con cancelación de ruido activa, batería de 30h y sonido Hi-Fi.",
     "stock": 15,
     "featured": true,
-    "image": "audifonospremium.jpg"
+    "image": "audifonospremium.webp"
   },
   {
     "id": 2,
@@ -17,7 +17,7 @@ export const PRODUCTS = [
     "description": "Zapatillas de cuero sintético con suela vulcanizada. Cómodas para el día a día.",
     "stock": 30,
     "featured": true,
-    "image": "sneakerscuero.jpg"
+    "image": "sneakerscuero.webp"
   },
   {
     "id": 3,
@@ -27,7 +27,7 @@ export const PRODUCTS = [
     "description": "Carga rápida compatible con Qi. Diseño ultradelgado en aluminio cepillado.",
     "stock": 50,
     "featured": true,
-    "image": "cargadori.jpg"
+    "image": "cargadori.webp"
   },
   {
     "id": 4,
@@ -37,7 +37,7 @@ export const PRODUCTS = [
     "description": "Mochila impermeable con compartimento para laptop 15''. Correas ergonómicas.",
     "stock": 20,
     "featured": false,
-    "image": "mochilaim.jpg"
+    "image": "mochilaim.webp"
   },
   {
     "id": 5,
@@ -47,7 +47,7 @@ export const PRODUCTS = [
     "description": "500ml, mantiene temperatura 12h frío / 8h caliente. Sin BPA.",
     "stock": 40,
     "featured": false,
-    "image": "termitos.jpg"
+    "image": "termitos.webp"
   },
   {
     "id": 6,
@@ -57,7 +57,7 @@ export const PRODUCTS = [
     "description": "Robert C. Martin. La guía definitiva para escribir código limpio y mantenible.",
     "stock": 25,
     "featured": false,
-    "image": "librocode.jpg"
+    "image": "librocode.webp"
   },
   {
     "id": 7,
@@ -67,7 +67,7 @@ export const PRODUCTS = [
     "description": "Mouse inalámbrico silencioso con 6 botones programables y DPI ajustable.",
     "stock": 18,
     "featured": false,
-    "image": "mouseina.jpg"
+    "image": "mouseina.webp"
   },
   {
     "id": 8,
@@ -77,7 +77,7 @@ export const PRODUCTS = [
     "description": "350ml. Acabado mate en negro. Apta para microondas y lavavajillas.",
     "stock": 60,
     "featured": false,
-    "image": "tazamatte.jpg"
+    "image": "tazamatte.webp"
   },
   {
     "id": 9,
@@ -87,7 +87,7 @@ export const PRODUCTS = [
     "description": "Mando para la consola PlayStation 5",
     "stock": 25,
     "featured": false,
-    "image": "mandops5.jpg"
+    "image": "mandops5.webp"
   },
   {
     "id": 10,
@@ -97,7 +97,7 @@ export const PRODUCTS = [
     "description": "Zapatillas deportivas con amortiguación avanzada y suela antideslizante. Ideal para correr.",
     "stock": 22,
     "featured": false,
-    "image": "zapatosrun.jpg"
+    "image": "zapatosrun.webp"
   },
   {
     "id": 11,
@@ -107,7 +107,7 @@ export const PRODUCTS = [
     "description": "Cinturón de cuero genuino con hebilla metálica. Disponible en marrón y negro.",
     "stock": 35,
     "featured": false,
-    "image": "fajadecuero.jpg"
+    "image": "fajadecuero.webp"
   },
   {
     "id": 12,
@@ -117,7 +117,7 @@ export const PRODUCTS = [
     "description": "David Thomas & Andrew Hunt. Guía esencial para desarrolladores modernos.",
     "stock": 20,
     "featured": false,
-    "image": "librodesa.jpg"
+    "image": "librodesa.webp"
   },
   {
     "id": 13,
@@ -127,7 +127,7 @@ export const PRODUCTS = [
     "description": "Teclado mecánico TKL con switches blue, retroiluminación RGB y cable USB-C desmontable.",
     "stock": 12,
     "featured": false,
-    "image": "teclado.jpg"
+    "image": "teclado.webp"
   },
   {
     "id": 14,
@@ -137,7 +137,7 @@ export const PRODUCTS = [
     "description": "Set de 4 piezas en bambú para organizar escritorio. Incluye portalápices y bandeja.",
     "stock": 45,
     "featured": false,
-    "image": "escritorio.jpg"
+    "image": "escritorio.webp"
   },
 ]
 

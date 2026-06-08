@@ -45,7 +45,15 @@ export default function ProductDetail() {
       </nav>
 
       <div className="detail-layout">
-        <img src={`/src/images/${product.image}`} alt={product.name} />
+        <img
+          src={`/images/${product.image}`}
+          alt={product.name}
+          className="detail-img"
+          loading="eager"
+          decoding="async"
+          width={800}
+          height={800}
+        />
 
         <div>
           <div className="detail-cat">{product.category}</div>

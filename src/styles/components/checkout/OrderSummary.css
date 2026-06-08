@@ -1,0 +1,74 @@
+/* OrderSummary.css */
+
+.os-card {
+  border: 1px solid #e5e5e5;
+  border-radius: 2px;
+  padding: 1.5rem;
+  position: sticky;
+  top: 72px;
+}
+
+.os-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.os-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  margin-bottom: 10px;
+  gap: 8px;
+}
+
+.os-item-emoji {
+  margin-right: 6px;
+}
+
+.os-item-name {
+  color: #525252;
+  flex: 1;
+}
+
+.os-item-qty {
+  font-size: 10px;
+  color: #a3a3a3;
+  background: #f5f5f5;
+  padding: 1px 6px;
+  border-radius: 2px;
+}
+
+.os-item-price {
+  color: #0f0f0f;
+  font-family: 'Playfair Display', serif;
+}
+
+.os-divider {
+  border: none;
+  border-top: 1px solid #e5e5e5;
+  margin: 1rem 0;
+}
+
+.os-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 8px;
+  color: #525252;
+}
+
+.os-total-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+}
+
+.os-secure-note {
+  font-size: 11px;
+  color: #a3a3a3;
+  text-align: center;
+  margin-top: 1rem;
+}
