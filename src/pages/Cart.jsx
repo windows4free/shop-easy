@@ -78,7 +78,7 @@ export default function Cart() {
           </div>
           <div className="cart-summary-row">
             <span className="cart-summary-key">Envío</span>
-            <span className="cart-summary-val">{shipping === 0 ? 'Gratis' : `$${shipping.toFixed(2)}`}</span>
+            <span className="cart-summary-val">{shipping === 0 ? 'Gratis' : `L${shipping.toFixed(2)}`}</span>
           </div>
           <div className="cart-summary-row">
             <span className="cart-summary-key">Impuesto (13%)</span>
@@ -95,7 +95,7 @@ export default function Cart() {
 
           <div className="cart-total-row">
             <span>Total</span>
-            <span>${total.toFixed(2)}</span>
+            <span>L{total.toFixed(2)}</span>
           </div>
 
           <button className="cart-checkout-btn" onClick={() => navigate('/checkout')}>

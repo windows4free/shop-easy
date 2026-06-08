@@ -389,15 +389,15 @@ export default function Checkout() {
               <span style={{ marginRight: '6px' }}>{product.emoji}</span>
               <span style={s.summaryItemName}>{product.name}</span>
               <span style={s.summaryItemQty}>×{quantity}</span>
-              <span style={s.summaryItemPrice}>${(product.price * quantity).toFixed(2)}</span>
+              <span style={s.summaryItemPrice}>L{(product.price * quantity).toFixed(2)}</span>
             </div>
           ))}
           <hr style={s.divider} />
-          <div style={s.summaryRow}><span>Subtotal</span><span>${totalPrice.toFixed(2)}</span></div>
-          <div style={s.summaryRow}><span>Envío</span><span>{shipping === 0 ? 'Gratis' : `$${shipping.toFixed(2)}`}</span></div>
-          <div style={s.summaryRow}><span>Impuesto (13%)</span><span>${tax.toFixed(2)}</span></div>
+          <div style={s.summaryRow}><span>Subtotal</span><span>L{totalPrice.toFixed(2)}</span></div>
+          <div style={s.summaryRow}><span>Envío</span><span>{shipping === 0 ? 'Gratis' : `L${shipping.toFixed(2)}`}</span></div>
+          <div style={s.summaryRow}><span>Impuesto (13%)</span><span>L{tax.toFixed(2)}</span></div>
           <hr style={s.divider} />
-          <div style={s.totalRow}><span>Total</span><span>${total.toFixed(2)}</span></div>
+          <div style={s.totalRow}><span>Total</span><span>L{total.toFixed(2)}</span></div>
           <p style={s.secureNote}>🔒 Pago seguro · PayPal Sandbox</p>
         </div>
       </div>
