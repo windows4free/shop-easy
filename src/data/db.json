@@ -1,3 +1,4 @@
+
 {
   "products": [
     {
@@ -90,7 +91,7 @@
       "featured": false,
       "image": "mandops5.jpg"
     },
-  {
+    {
       "id": 10,
       "name": "Zapatillas Running Pro",
       "category": "Calzado",
@@ -99,8 +100,8 @@
       "stock": 22,
       "featured": false,
       "image": "zapatosrun.jpg"
-   },
-  {
+    },
+    {
       "id": 11,
       "name": "Cinturón de Cuero Genuino",
       "category": "Accesorios",
@@ -109,8 +110,8 @@
       "stock": 35,
       "featured": false,
       "image": "fajadecuero.jpg"
-   },
-  {
+    },
+    {
       "id": 12,
       "name": "Libro: The Pragmatic Programmer",
       "category": "Libros",
@@ -119,8 +120,8 @@
       "stock": 20,
       "featured": false,
       "image": "librodesa.jpg"
-   },
-  {
+    },
+    {
       "id": 13,
       "name": "Teclado Mecánico Compacto",
       "category": "Electrónica",
@@ -130,7 +131,7 @@
       "featured": false,
       "image": "teclado.jpg"
     },
-  {
+    {
       "id": 14,
       "name": "Set de Organización para Escritorio",
       "category": "Hogar",
