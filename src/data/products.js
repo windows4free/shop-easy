@@ -6,7 +6,8 @@ export const PRODUCTS = [
       "price": 89.99,
       "description": "Audífonos inalámbricos con cancelación de ruido activa, batería de 30h y sonido Hi-Fi.",
       "stock": 15,
-      "featured": true
+      "featured": true,
+      "image": "audifonospremium.jpg"
     },
     {
       "id": 2,
@@ -15,7 +16,8 @@ export const PRODUCTS = [
       "price": 54.00,
       "description": "Zapatillas de cuero sintético con suela vulcanizada. Cómodas para el día a día.",
       "stock": 30,
-      "featured": true
+      "featured": true,
+      "image": "sneakerscuero.jpg"
     },
     {
       "id": 3,
@@ -24,7 +26,8 @@ export const PRODUCTS = [
       "price": 29.99,
       "description": "Carga rápida compatible con Qi. Diseño ultradelgado en aluminio cepillado.",
       "stock": 50,
-      "featured": true
+      "featured": true,
+      "image": "cargadori.jpg"
     },
     {
       "id": 4,
@@ -33,7 +36,8 @@ export const PRODUCTS = [
       "price": 45.00,
       "description": "Mochila impermeable con compartimento para laptop 15''. Correas ergonómicas.",
       "stock": 20,
-      "featured": false
+      "featured": false,
+      "image": "mochilaim.jpg"
     },
     {
       "id": 5,
@@ -42,7 +46,8 @@ export const PRODUCTS = [
       "price": 22.50,
       "description": "500ml, mantiene temperatura 12h frío / 8h caliente. Sin BPA.",
       "stock": 40,
-      "featured": false
+      "featured": false,
+      "image": "termitos.jpg"
     },
     {
       "id": 6,
@@ -51,7 +56,8 @@ export const PRODUCTS = [
       "price": 18.00,
       "description": "Robert C. Martin. La guía definitiva para escribir código limpio y mantenible.",
       "stock": 25,
-      "featured": false
+      "featured": false,
+      "image": "librocode.jpg"
     },
     {
       "id": 7,
@@ -60,7 +66,8 @@ export const PRODUCTS = [
       "price": 34.99,
       "description": "Mouse inalámbrico silencioso con 6 botones programables y DPI ajustable.",
       "stock": 18,
-      "featured": false
+      "featured": false,
+      "image": "mouseina.jpg"
     },
     {
       "id": 8,
@@ -69,7 +76,8 @@ export const PRODUCTS = [
       "price": 12.00,
       "description": "350ml. Acabado mate en negro. Apta para microondas y lavavajillas.",
       "stock": 60,
-      "featured": false
+      "featured": false,
+      "image": "tazamatte.jpg"
     },
     {
       "id": 9,
@@ -78,7 +86,8 @@ export const PRODUCTS = [
       "price": 69.99,
       "description": "Mando para la consola PlayStation 5",
       "stock": 25,
-      "featured": false
+      "featured": false,
+      "image": "mandops5.jpg"
     },
   {
       "id": 10,
@@ -87,7 +96,8 @@ export const PRODUCTS = [
       "price": 72.00,
       "description": "Zapatillas deportivas con amortiguación avanzada y suela antideslizante. Ideal para correr.",
       "stock": 22,
-      "featured": false
+      "featured": false,
+      "image": "zapatosrun.jpg"
    },
   {
       "id": 11,
@@ -96,7 +106,8 @@ export const PRODUCTS = [
       "price": 28.00,
       "description": "Cinturón de cuero genuino con hebilla metálica. Disponible en marrón y negro.",
       "stock": 35,
-      "featured": false
+      "featured": false,
+      "image": "fajadecuero.jpg"
    },
   {
       "id": 12,
@@ -105,7 +116,8 @@ export const PRODUCTS = [
       "price": 21.00,
       "description": "David Thomas & Andrew Hunt. Guía esencial para desarrolladores modernos.",
       "stock": 20,
-      "featured": false
+      "featured": false,
+      "image": "librodesa.jpg"
    },
   {
       "id": 13,
@@ -114,7 +126,8 @@ export const PRODUCTS = [
       "price": 59.99,
       "description": "Teclado mecánico TKL con switches blue, retroiluminación RGB y cable USB-C desmontable.",
       "stock": 12,
-      "featured": false
+      "featured": false,
+      "image": "teclado.jpg"
     },
   {
       "id": 14,
@@ -123,7 +136,8 @@ export const PRODUCTS = [
       "price": 19.99,
       "description": "Set de 4 piezas en bambú para organizar escritorio. Incluye portalápices y bandeja.",
       "stock": 45,
-      "featured": false
+      "featured": false,
+      "image": "escritorio.jpg"
     },
 ]
 
