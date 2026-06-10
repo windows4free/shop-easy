@@ -44,13 +44,13 @@ export default function ProductDetail() {
     )
   }
 
-  function handleAddToCart() {
+  const handleAddToCart = () => {
     for (let i = 0; i < qty; i++) addItem(product)
     setToast(true)
     setTimeout(() => setToast(false), 2000)
   }
 
-  function handleBuyNow() {
+  const handleBuyNow = () => {
     for (let i = 0; i < qty; i++) addItem(product)
     navigate('/cart')
   }

@@ -10,8 +10,9 @@ import Cart from './pages/Cart.jsx'
 import Checkout from './pages/Checkout.jsx'
 import OrderConfirmation from './pages/OrderConfirmation.jsx'
 import Auth from './pages/Auth.jsx'
-import { NotFound } from './pages/_stubs.jsx'
 import Transactions from './pages/Transactions.jsx'
+
+const NotFound = () => <div style={{ padding: '40px 20px', textAlign: 'center' }}><h1>404 - Página no encontrada</h1></div>
 
 export default function App() {
   return (

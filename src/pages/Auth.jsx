@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext.jsx'
 import '../styles/pages/Auth.css'
 
 export default function Auth() {
-  const { login, signup, error: authError } = useAuth()
+  const { login, signup } = useAuth()
   const navigate = useNavigate()
 
   const [isSignup, setIsSignup] = useState(false)
@@ -103,9 +103,9 @@ export default function Auth() {
               />
             </div>
 
-            {(error || authError) && (
+            {error && (
               <div className="auth-error">
-                {error || authError}
+                {error}
               </div>
             )}
 

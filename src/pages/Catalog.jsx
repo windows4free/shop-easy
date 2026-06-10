@@ -4,10 +4,10 @@ import ProductCard from '../components/ProductCard.jsx'
 import '../styles/pages/Catalog.css'
 
 export default function Catalog() {
-  const [products,       setProducts]       = useState([])
-  const [loading,        setLoading]        = useState(true)
+  const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(true)
   const [activeCategory, setActiveCategory] = useState('Todos')
-  const [sort,           setSort]           = useState('default')
+  const [sort, setSort] = useState('default')
 
   useEffect(() => {
     fetchProducts().then(data => {

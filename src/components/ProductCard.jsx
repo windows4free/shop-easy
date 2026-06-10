@@ -7,7 +7,7 @@ export default function ProductCard({ product }) {
   const { addItem } = useCart()
   const [added, setAdded] = useState(false)
 
-  function handleAdd(e) {
+  const handleAdd = (e) => {
     e.preventDefault()
     addItem(product)
     setAdded(true)

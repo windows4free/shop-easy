@@ -1,14 +1,12 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext.jsx'
+import { getPrices } from '../utils/priceCalculations.js'
 import '../styles/pages/Cart.css'
 
 export default function Cart() {
   const { items, totalItems, totalPrice, removeItem, updateQty, clearCart } = useCart()
   const navigate = useNavigate()
-
-  const shipping = totalPrice > 50 ? 0 : 5.99
-  const tax      = totalPrice * 0.13
-  const total    = totalPrice + shipping + tax
+  const { shipping, tax, total } = getPrices(totalPrice)
 
   if (items.length === 0) {
     return (
@@ -47,7 +45,7 @@ export default function Cart() {
                     style={{ width: '48px', height: '48px', objectFit: 'cover', borderRadius: '2px', background: '#f5f5f5' }}
                   />
                 <div>
-                  <Link to={`/product/L{product.id}`} className="cart-item-name">
+                  <Link to={`/product/${product.id}`} className="cart-item-name">
                     {product.name}
                   </Link>
                   <span className="cart-item-cat">{product.category}</span>

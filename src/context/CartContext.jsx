@@ -2,7 +2,6 @@ import { createContext, useContext, useReducer } from 'react'
 
 const initialState = {
   items: [],
-  isOpen: false,
 }
 
 function cartReducer(state, action) {

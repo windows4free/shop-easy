@@ -146,23 +146,4 @@ export default function OrderConfirmation() {
       </div>
     </div>
   )
-  async function saveOrderToSupabase(order) {
-  const { data, error } = await supabase.from('orders').insert([{
-    id:            order.id,
-    items:         order.items,
-    shipping:      order.shipping,
-    payment:       order.payment,
-    subtotal:      order.subtotal,
-    shipping_cost: order.shippingCost,
-    tax:           order.tax,
-    total:         order.total,
-    user_id:       order.user_id,
-  }]).select()
-
-  if (error) {
-    console.error('Error Supabase:', error)
-  } else {
-    console.log('Orden guardada:', data)
-  }
-}
 }

@@ -5,7 +5,7 @@ import '../styles/components/Navbar.css'
 
 export default function Navbar() {
   const { totalItems } = useCart()
-  const { currentUser, isAdmin, logout, isLoading } = useAuth()
+  const { currentUser, logout, isLoading } = useAuth()
   const navigate = useNavigate()
 
   const handleLogout = async () => {
@@ -43,7 +43,6 @@ export default function Navbar() {
             <span className="navbar-user-name">
               {currentUser.user_metadata?.full_name || currentUser.email}
             </span>
-            {isAdmin && <span className="navbar-admin-badge">Admin</span>}
           </div>
         )}
 

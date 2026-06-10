@@ -17,8 +17,7 @@ export default function Home() {
   }, [])
 
   return (
-    <>
-      <div className="home-page">
+    <div className="home-page">
         <section className="home-hero">
           <h1 className="home-h1">Tu tienda,<br />sin complicaciones.</h1>
           <div className="home-cta">
@@ -62,6 +61,6 @@ export default function Home() {
           </div>
         )}
       </div>
-    </>
-  )
+    )
+
 }

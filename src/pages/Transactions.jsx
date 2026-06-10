@@ -10,7 +10,7 @@ const METHOD_LABELS = {
 }
 
 export default function Transactions() {
-  const { currentUser, isAdmin, isLoading: authLoading } = useAuth()
+  const { currentUser, isLoading: authLoading } = useAuth()
   const [orders,  setOrders]  = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -19,11 +19,9 @@ export default function Transactions() {
 
     const fetchOrders = async () => {
       try {
-        let query = supabase.from('orders').select('*')
-
-        if (!isAdmin && currentUser) {
-          query = query.eq('user_id', currentUser.id)
-        }
+        const query = currentUser
+          ? supabase.from('orders').select('*').eq('user_id', currentUser.id)
+          : supabase.from('orders').select('*')
 
         const { data, error } = await query.order('created_at', { ascending: false })
 
@@ -36,7 +34,7 @@ export default function Transactions() {
     }
 
     fetchOrders()
-  }, [currentUser, isAdmin, authLoading])
+  }, [currentUser, authLoading])
 
   const totalVentas   = orders.reduce((acc, o) => acc + Number(o.total), 0)
   const totalCompras  = orders.length
@@ -63,15 +61,12 @@ export default function Transactions() {
   return (
     <div className="tx-page">
       <div className="tx-header">
-        <h1 className="tx-title">
-          {isAdmin ? 'Historial de Compras (Admin)' : 'Mis Compras'}
-        </h1>
+        <h1 className="tx-title">Mis Compras</h1>
         <p className="tx-subtitle">
-          {totalCompras} {isAdmin ? 'compras totales' : 'compras registradas'}
+          {totalCompras} {totalCompras === 1 ? 'compra registrada' : 'compras registradas'}
         </p>
       </div>
 
-      {/* Resumen */}
       <div className="tx-summary">
         <div className="tx-summary-item">
           <span className="tx-summary-label">Total compras</span>

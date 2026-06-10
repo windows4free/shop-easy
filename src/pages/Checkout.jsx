@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext.jsx'
 import { useAuth } from '../context/AuthContext.jsx'
+import { getPrices } from '../utils/priceCalculations.js'
 import CheckoutSteps  from '../components/checkout/CheckoutSteps.jsx'
 import ShippingForm   from '../components/checkout/ShippingForm.jsx'
 import PaymentStep    from '../components/checkout/PaymentStep.jsx'
@@ -12,10 +13,7 @@ export default function Checkout() {
   const { items, totalPrice, clearCart } = useCart()
   const { currentUser } = useAuth()
   const navigate = useNavigate()
-
-  const shipping = totalPrice > 50 ? 0 : 5.99
-  const tax      = totalPrice * 0.13
-  const total    = totalPrice + shipping + tax
+  const { shipping, tax, total } = getPrices(totalPrice)
 
   const [step,        setStep]        = useState(1)
   const [payMethod,   setPayMethod]   = useState('paypal')
@@ -76,8 +74,7 @@ export default function Checkout() {
   }
 
   function handleCashConfirm() {
-    const order = buildOrder({ method: 'cash', last4: '****' })
-    sessionStorage.setItem('shopeasy_order', JSON.stringify(order))
+    sessionStorage.setItem('shopeasy_order', JSON.stringify(buildOrder({ method: 'cash', last4: '****' })))
     clearCart()
     navigate('/order-confirmation')
   }
