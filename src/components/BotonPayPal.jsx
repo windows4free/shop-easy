@@ -1,7 +1,7 @@
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js'
-import '../styles/components/checkout/PayPalButton.css'
+import '../styles/components/checkout/BotonPayPal.css'
 
-export default function PayPalButton({ amount, onSuccess, onError }) {
+export default function BotonPayPal({ amount, onSuccess, onError }) {
   const [{ isPending }] = usePayPalScriptReducer()
 
   if (isPending) {

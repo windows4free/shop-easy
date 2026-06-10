@@ -1,16 +1,16 @@
 import { Routes, Route } from 'react-router-dom'
 import { CartProvider } from './context/CartContext.jsx'
 import { AuthProvider } from './context/AuthContext.jsx'
-import Navbar from './components/Navbar.jsx'
-import Footer from './components/Footer.jsx'
-import Home from './pages/Home.jsx'
-import Catalog from './pages/Catalog.jsx'
-import ProductDetail from './pages/ProductDetail.jsx'
-import Cart from './pages/Cart.jsx'
-import Checkout from './pages/Checkout.jsx'
-import OrderConfirmation from './pages/OrderConfirmation.jsx'
+import BarraNavegacion from './components/BarraNavegacion.jsx'
+import PiePagina from './components/PiePagina.jsx'
+import Inicio from './pages/Inicio.jsx'
+import Productos from './pages/Productos.jsx'
+import DetalleProducto from './pages/DetalleProducto.jsx'
+import Carrito from './pages/Carrito.jsx'
+import Pago from './pages/Pago.jsx'
+import ConfirmacionOrden from './pages/ConfirmacionOrden.jsx'
 import Auth from './pages/Auth.jsx'
-import Transactions from './pages/Transactions.jsx'
+import HistorialCompras from './pages/HistorialCompras.jsx'
 
 const NotFound = () => <div style={{ padding: '40px 20px', textAlign: 'center' }}><h1>404 - Página no encontrada</h1></div>
 
@@ -18,21 +18,21 @@ export default function App() {
   return (
     <AuthProvider>
       <CartProvider>
-        <Navbar />
+        <BarraNavegacion />
         <main>
           <Routes>
-            <Route path="/"                   element={<Home />} />
-            <Route path="/catalog"            element={<Catalog />} />
-            <Route path="/product/:id"        element={<ProductDetail />} />
-            <Route path="/cart"               element={<Cart />} />
-            <Route path="/checkout"           element={<Checkout />} />
-            <Route path="/order-confirmation" element={<OrderConfirmation />} />
+            <Route path="/"                   element={<Inicio />} />
+            <Route path="/catalog"            element={<Productos />} />
+            <Route path="/product/:id"        element={<DetalleProducto />} />
+            <Route path="/cart"               element={<Carrito />} />
+            <Route path="/checkout"           element={<Pago />} />
+            <Route path="/order-confirmation" element={<ConfirmacionOrden />} />
             <Route path="/auth"               element={<Auth />} />
-            <Route path="/transactions"       element={<Transactions />} />
+            <Route path="/transactions"       element={<HistorialCompras />} />
             <Route path="*"                   element={<NotFound />} />
           </Routes>
         </main>
-        <Footer />
+        <PiePagina />
       </CartProvider>
     </AuthProvider>
   )

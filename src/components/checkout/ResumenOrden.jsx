@@ -1,4 +1,4 @@
-import '../../styles/components/checkout/OrderSummary.css'
+import '../../styles/components/checkout/ResumenOrden.css'
 
 export default function OrderSummary({ items, subtotal, shipping, tax, total }) {
   return (

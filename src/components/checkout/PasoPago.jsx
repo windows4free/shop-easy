@@ -1,12 +1,12 @@
-import PayPalButton from '../PayPalButton.jsx'
-import '../../styles/components/checkout/PaymentStep.css'
+import BotonPayPal from '../BotonPayPal.jsx'
+import '../../styles/components/checkout/PasoPago.css'
 
-const METHODS = [
+const METODOS = [
   { id: 'paypal', label: 'PayPal' },
   { id: 'cash',   label: 'Pagar al recibir' },
 ]
 
-export default function PaymentStep({
+export default function PasoPago({
   payMethod,
   onMethodChange,
   total,
@@ -22,7 +22,7 @@ export default function PaymentStep({
         <div className="ps-section-title">Método de pago</div>
 
         <div className="ps-methods">
-          {METHODS.map(m => (
+          {METODOS.map(m => (
             <button
               key={m.id}
               className={payMethod === m.id ? 'ps-chip--active' : 'ps-chip'}
@@ -35,7 +35,7 @@ export default function PaymentStep({
 
         {payMethod === 'paypal' && (
           <>
-            <PayPalButton
+            <BotonPayPal
               amount={total}
               onSuccess={onPayPalSuccess}
               onError={onPayPalError}

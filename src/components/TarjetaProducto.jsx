@@ -1,17 +1,17 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useCart } from '../context/CartContext.jsx'
-import '../styles/components/ProductCard.css'
+import '../styles/components/TarjetaProducto.css'
 
-export default function ProductCard({ product }) {
-  const { addItem } = useCart()
-  const [added, setAdded] = useState(false)
+export default function TarjetaProducto({ product }) {
+  const { agregarProducto } = useCart()
+  const [agregado, setAgregado] = useState(false)
 
   const handleAdd = (e) => {
     e.preventDefault()
-    addItem(product)
-    setAdded(true)
-    setTimeout(() => setAdded(false), 1200)
+    agregarProducto(product)
+    setAgregado(true)
+    setTimeout(() => setAgregado(false), 1200)
   }
 
   return (
@@ -39,7 +39,7 @@ export default function ProductCard({ product }) {
       <div className="pcard-footer">
         <span className="pcard-price">L{product.price.toFixed(2)}</span>
 
-        {added
+        {agregado
           ? <span className="pcard-added">✓ Agregado</span>
           : <button className="pcard-add-btn" onClick={handleAdd}>+ Carrito</button>
         }

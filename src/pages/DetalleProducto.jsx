@@ -2,17 +2,17 @@ import { useState, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { supabase } from '../data/supabase.js'
 import { useCart } from '../context/CartContext.jsx'
-import '../styles/pages/ProductDetail.css'
+import '../styles/pages/DetalleProducto.css'
 
-export default function ProductDetail() {
+export default function DetalleProducto() {
   const { id }      = useParams()
   const navigate    = useNavigate()
-  const { addItem } = useCart()
+  const { agregarProducto } = useCart()
 
-  const [product, setProduct] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [qty,     setQty]     = useState(1)
-  const [toast,   setToast]   = useState(false)
+  const [producto, setProducto] = useState(null)
+  const [estaCargando, setEstaCargando] = useState(true)
+  const [cantidad,     setCantidad]     = useState(1)
+  const [mostrarToast,   setMostrarToast]   = useState(false)
 
   useEffect(() => {
     supabase
@@ -21,12 +21,12 @@ export default function ProductDetail() {
       .eq('id', Number(id))
       .single()
       .then(({ data, error }) => {
-        if (!error) setProduct(data)
-        setLoading(false)
+        if (!error) setProducto(data)
+        setEstaCargando(false)
       })
   }, [id])
 
-  if (loading) {
+  if (estaCargando) {
     return (
       <div className="detail-page">
         <p style={{ color: '#a3a3a3', fontSize: '13px' }}>Cargando producto...</p>
@@ -34,7 +34,7 @@ export default function ProductDetail() {
     )
   }
 
-  if (!product) {
+  if (!producto) {
     return (
       <div className="detail-404">
         <p className="detail-404-num">404</p>
@@ -44,14 +44,14 @@ export default function ProductDetail() {
     )
   }
 
-  const handleAddToCart = () => {
-    for (let i = 0; i < qty; i++) addItem(product)
-    setToast(true)
-    setTimeout(() => setToast(false), 2000)
+  const manejarAgregarAlCarrito = () => {
+    for (let i = 0; i < cantidad; i++) agregarProducto(producto)
+    setMostrarToast(true)
+    setTimeout(() => setMostrarToast(false), 2000)
   }
 
-  const handleBuyNow = () => {
-    for (let i = 0; i < qty; i++) addItem(product)
+  const manejarComprarAhora = () => {
+    for (let i = 0; i < cantidad; i++) agregarProducto(producto)
     navigate('/cart')
   }
 
@@ -62,13 +62,13 @@ export default function ProductDetail() {
         <span className="detail-bread-sep">/</span>
         <Link to="/catalog" className="detail-bread-link">Catálogo</Link>
         <span className="detail-bread-sep">/</span>
-        <span style={{ color: '#0f0f0f' }}>{product.name}</span>
+        <span style={{ color: '#0f0f0f' }}>{producto.name}</span>
       </nav>
 
       <div className="detail-layout">
         <img
-          src={`/images/${product.image}`}
-          alt={product.name}
+          src={`/images/${producto.image}`}
+          alt={producto.name}
           className="detail-img"
           loading="eager"
           decoding="async"
@@ -77,29 +77,29 @@ export default function ProductDetail() {
         />
 
         <div>
-          <div className="detail-cat">{product.category}</div>
-          <h1 className="detail-name">{product.name}</h1>
-          <div className="detail-price">L{product.price.toFixed(2)}</div>
-          <p className="detail-desc">{product.description}</p>
+          <div className="detail-cat">{producto.category}</div>
+          <h1 className="detail-name">{producto.name}</h1>
+          <div className="detail-price">L{producto.price.toFixed(2)}</div>
+          <p className="detail-desc">{producto.description}</p>
 
           <div className="detail-qty-row">
             <span className="detail-qty-label">Cantidad</span>
             <div className="detail-qty-control">
-              <button className="detail-qty-btn" onClick={() => setQty(q => Math.max(1, q - 1))}>−</button>
-              <span className="detail-qty-num">{qty}</span>
-              <button className="detail-qty-btn detail-qty-btn--no-left" onClick={() => setQty(q => Math.min(product.stock, q + 1))}>+</button>
+              <button className="detail-qty-btn" onClick={() => setCantidad(q => Math.max(1, q - 1))}>−</button>
+              <span className="detail-qty-num">{cantidad}</span>
+              <button className="detail-qty-btn detail-qty-btn--no-left" onClick={() => setCantidad(q => Math.min(producto.stock, q + 1))}>+</button>
             </div>
           </div>
 
           <div className="detail-actions">
-            <button className="detail-btn-primary" onClick={handleBuyNow}>Comprar ahora</button>
-            <button className="detail-btn-outline" onClick={handleAddToCart}>+ Agregar al carrito</button>
+            <button className="detail-btn-primary" onClick={manejarComprarAhora}>Comprar ahora</button>
+            <button className="detail-btn-outline" onClick={manejarAgregarAlCarrito}>+ Agregar al carrito</button>
           </div>
 
           <div className="detail-meta">
             {[
-              ['Disponibilidad', `${product.stock} unidades`],
-              ['Categoría',      product.category],
+              ['Disponibilidad', `${producto.stock} unidades`],
+              ['Categoría',      producto.category],
               ['Envío',          'Gratis'],
               ['Devoluciones',   '30 días'],
             ].map(([k, v]) => (
@@ -112,7 +112,7 @@ export default function ProductDetail() {
         </div>
       </div>
 
-      {toast && <div className="detail-toast">✓ Agregado al carrito</div>}
+      {mostrarToast && <div className="detail-toast">✓ Agregado al carrito</div>}
     </div>
   )
 }

@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { supabase } from '../data/supabase.js'
-import '../styles/pages/OrderConfirmation.css'
+import '../styles/pages/Confirmacion.css'
 
-const PAY_LABELS = {
+const ETIQUETAS_PAGO = {
   card:   'Tarjeta de crédito/débito',
   paypal: 'PayPal',
   cash:   'Pagar en efectivo',
 }
 
-async function saveOrderToSupabase(order) {
+async function guardarOrdenEnSupabase(order) {
   try {
     await supabase.from('orders').insert([{
       id:            order.id,
@@ -28,18 +28,18 @@ async function saveOrderToSupabase(order) {
 }
 
 export default function OrderConfirmation() {
-  const [order, setOrder] = useState(null)
+  const [orden, setOrden] = useState(null)
 
   useEffect(() => {
     const raw = sessionStorage.getItem('shopeasy_order')
     if (!raw) return
     const parsed = JSON.parse(raw)
-    setOrder(parsed)
+    setOrden(parsed)
     sessionStorage.removeItem('shopeasy_order')
-    saveOrderToSupabase(parsed)
+    guardarOrdenEnSupabase(parsed)
   }, [])
 
-  if (!order) {
+  if (!orden) {
     return (
       <div className="order-page">
         <div className="order-empty">
@@ -51,7 +51,7 @@ export default function OrderConfirmation() {
     )
   }
 
-  const date = new Date(order.date).toLocaleDateString('es-HN', {
+  const fecha = new Date(orden.date).toLocaleDateString('es-HN', {
     year: 'numeric', month: 'long', day: 'numeric',
   })
 
@@ -61,7 +61,7 @@ export default function OrderConfirmation() {
         <div className="order-icon-circle">✓</div>
         <h1 className="order-title">¡Orden confirmada!</h1>
         <p className="order-subtitle">Gracias por tu compra. Tu pedido ha sido procesado exitosamente.</p>
-        <span className="order-id">{order.id}</span>
+        <span className="order-id">{orden.id}</span>
       </div>
 
       <div className="order-layout">
@@ -69,10 +69,10 @@ export default function OrderConfirmation() {
           <div className="order-section">
             <div className="order-section-header">Productos ordenados</div>
             <div className="order-section-body">
-              {order.items.map(({ product, quantity }, i) => (
+              {orden.items.map(({ product, quantity }, i) => (
                 <div
                   key={product.id}
-                  className={`order-item-row${i === order.items.length - 1 ? ' order-item-row--last' : ''}`}
+                  className={`order-item-row${i === orden.items.length - 1 ? ' order-item-row--last' : ''}`}
                 >
                   <img
                     src={`/images/${product.image}`}
@@ -94,12 +94,12 @@ export default function OrderConfirmation() {
             <div className="order-section-header">Información de envío</div>
             <div className="order-section-body">
               {[
-                ['Destinatario', `${order.shipping.firstName} ${order.shipping.lastName}`],
-                ['Correo',        order.shipping.email],
-                ['Dirección',     order.shipping.address],
-                ['Ciudad',        order.shipping.city],
-                ['Código postal', order.shipping.zip],
-                ['País',          order.shipping.country],
+                ['Destinatario', `${orden.shipping.firstName} ${orden.shipping.lastName}`],
+                ['Correo',        orden.shipping.email],
+                ['Dirección',     orden.shipping.address],
+                ['Ciudad',        orden.shipping.city],
+                ['Código postal', orden.shipping.zip],
+                ['País',          orden.shipping.country],
               ].map(([k, v]) => (
                 <div key={k} className="order-info-row">
                   <span className="order-info-key">{k}</span>
@@ -113,11 +113,11 @@ export default function OrderConfirmation() {
             <div className="order-section-header">Método de pago</div>
             <div className="order-section-body">
               {[
-                ['Método', PAY_LABELS[order.payment.method] || order.payment.method],
+                ['Método', ETIQUETAS_PAGO[orden.payment.method] || orden.payment.method],
                 ['Estado', '✓ Pago exitoso'],
-                ['Fecha',  date],
-                ...(order.payment.method === 'card'
-                  ? [['Tarjeta', `**** **** **** ${order.payment.last4}`]]
+                ['Fecha',  fecha],
+                ...(orden.payment.method === 'card'
+                  ? [['Tarjeta', `**** **** **** ${orden.payment.last4}`]]
                   : []),
               ].map(([k, v]) => (
                 <div key={k} className="order-info-row">
@@ -132,11 +132,11 @@ export default function OrderConfirmation() {
         <div className="order-summary-card">
           <div className="order-summary-header">Resumen de la orden</div>
           <div className="order-summary-body">
-            <div className="order-summary-row"><span>Subtotal</span><span>L{order.subtotal.toFixed(2)}</span></div>
-            <div className="order-summary-row"><span>Envío</span><span>{order.shippingCost === 0 ? 'Gratis' : `L${order.shippingCost.toFixed(2)}`}</span></div>
-            <div className="order-summary-row"><span>Impuesto (13%)</span><span>L{order.tax.toFixed(2)}</span></div>
+            <div className="order-summary-row"><span>Subtotal</span><span>L{orden.subtotal.toFixed(2)}</span></div>
+            <div className="order-summary-row"><span>Envío</span><span>{orden.shippingCost === 0 ? 'Gratis' : `L${orden.shippingCost.toFixed(2)}`}</span></div>
+            <div className="order-summary-row"><span>Impuesto (13%)</span><span>L{orden.tax.toFixed(2)}</span></div>
             <hr className="order-divider" />
-            <div className="order-total-row"><span>Total</span><span>L{order.total.toFixed(2)}</span></div>
+            <div className="order-total-row"><span>Total</span><span>L{orden.total.toFixed(2)}</span></div>
             <div className="order-actions">
               <Link to="/" className="order-btn-primary">Volver al inicio</Link>
               <Link to="/catalog" className="order-btn-outline">Seguir comprando</Link>

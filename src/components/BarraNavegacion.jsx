@@ -1,11 +1,11 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext.jsx'
 import { useAuth } from '../context/AuthContext.jsx'
-import '../styles/components/Navbar.css'
+import '../styles/components/BarraNavegacion.css'
 
-export default function Navbar() {
+export default function BarraNavegacion() {
   const { totalItems } = useCart()
-  const { currentUser, logout, isLoading } = useAuth()
+  const { usuarioActual, logout, estaCargando } = useAuth()
   const navigate = useNavigate()
 
   const handleLogout = async () => {
@@ -22,8 +22,8 @@ export default function Navbar() {
       <ul className="navbar-links">
         {[
           { to: '/',        label: 'Inicio'   },
-          { to: '/catalog', label: 'Catálogo' },
-          { to: '/transactions', label: 'Tus Compras' },
+          { to: '/catalog', label: 'Productos' },
+          { to: '/transactions', label: 'Mis Compras' },
         ].map(({ to, label }) => (
           <li key={to}>
             <NavLink
@@ -38,10 +38,10 @@ export default function Navbar() {
       </ul>
 
       <div className="navbar-right">
-        {!isLoading && currentUser && (
+        {!estaCargando && usuarioActual && (
           <div className="navbar-user-section">
             <span className="navbar-user-name">
-              {currentUser.user_metadata?.full_name || currentUser.email}
+              {usuarioActual.user_metadata?.full_name || usuarioActual.email}
             </span>
           </div>
         )}
@@ -51,15 +51,15 @@ export default function Navbar() {
           {totalItems > 0 && <span className="navbar-badge">{totalItems}</span>}
         </Link>
 
-        {isLoading ? (
+        {estaCargando ? (
           <span className="navbar-loading">...</span>
-        ) : currentUser ? (
+        ) : usuarioActual ? (
           <button onClick={handleLogout} className="navbar-logout-btn">
-            Logout
+            Cerrar sesión
           </button>
         ) : (
           <Link to="/auth" className="navbar-login-btn">
-            Login
+            Iniciar sesión
           </Link>
         )}
       </div>

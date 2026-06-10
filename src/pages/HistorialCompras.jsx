@@ -1,45 +1,45 @@
 import { useEffect, useState } from 'react'
 import { useAuth } from '../context/AuthContext.jsx'
 import { supabase } from '../data/supabase.js'
-import '../styles/pages/Transactions.css'
+import '../styles/pages/HistorialCompras.css'
 
-const METHOD_LABELS = {
+const ETIQUETAS_METODO = {
   paypal: 'Paypal',
   card:   'Tarjeta de crédito/débito',
   cash:   'Paga al recibir',
 }
 
-export default function Transactions() {
-  const { currentUser, isLoading: authLoading } = useAuth()
-  const [orders,  setOrders]  = useState([])
-  const [loading, setLoading] = useState(true)
+export default function HistorialCompras() {
+  const { usuarioActual, estaCargando: authCargando } = useAuth()
+  const [ordenes,  setOrdenes]  = useState([])
+  const [estaCargando, setEstaCargando] = useState(true)
 
   useEffect(() => {
-    if (authLoading) return
+    if (authCargando) return
 
-    const fetchOrders = async () => {
+    const obtenerOrdenes = async () => {
       try {
-        const query = currentUser
-          ? supabase.from('orders').select('*').eq('user_id', currentUser.id)
+        const query = usuarioActual
+          ? supabase.from('orders').select('*').eq('user_id', usuarioActual.id)
           : supabase.from('orders').select('*')
 
         const { data, error } = await query.order('created_at', { ascending: false })
 
-        if (!error) setOrders(data || [])
+        if (!error) setOrdenes(data || [])
       } catch (err) {
         console.error('Error fetching orders:', err)
       } finally {
-        setLoading(false)
+        setEstaCargando(false)
       }
     }
 
-    fetchOrders()
-  }, [currentUser, authLoading])
+    obtenerOrdenes()
+  }, [usuarioActual, authCargando])
 
-  const totalVentas   = orders.reduce((acc, o) => acc + Number(o.total), 0)
-  const totalCompras  = orders.length
+  const totalVentas   = ordenes.reduce((acc, o) => acc + Number(o.total), 0)
+  const totalCompras  = ordenes.length
 
-  if (loading || authLoading) {
+  if (estaCargando || authCargando) {
     return (
       <div className="tx-page">
         <p className="tx-loading">Cargando compras...</p>
@@ -47,7 +47,7 @@ export default function Transactions() {
     )
   }
 
-  if (!currentUser) {
+  if (!usuarioActual) {
     return (
       <div className="tx-page">
         <div className="tx-empty">
@@ -78,7 +78,7 @@ export default function Transactions() {
         </div>
       </div>
 
-      {orders.length === 0 ? (
+      {ordenes.length === 0 ? (
         <p className="tx-empty">No hay compras todavía.</p>
       ) : (
         <div className="tx-table-wrapper">
@@ -94,7 +94,7 @@ export default function Transactions() {
               </tr>
             </thead>
             <tbody>
-              {orders.map((order, i) => (
+              {ordenes.map((order, i) => (
                 <tr key={order.id} className={i % 2 === 0 ? 'tx-row' : 'tx-row tx-row--alt'}>
                   <td className="tx-td tx-td--mono">{order.id}</td>
                   <td className="tx-td">
@@ -105,7 +105,7 @@ export default function Transactions() {
                   </td>
                   <td className="tx-td">
                     <span className="tx-method">
-                      {METHOD_LABELS[order.payment?.method] || order.payment?.method}
+                      {ETIQUETAS_METODO[order.payment?.method] || order.payment?.method}
                     </span>
                   </td>
                   <td className="tx-td">

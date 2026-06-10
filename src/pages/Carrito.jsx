@@ -1,12 +1,12 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext.jsx'
-import { getPrices } from '../utils/priceCalculations.js'
-import '../styles/pages/Cart.css'
+import { obtenerPrecios } from '../utils/priceCalculations.js'
+import '../styles/pages/Carrito.css'
 
-export default function Cart() {
-  const { items, totalItems, totalPrice, removeItem, updateQty, clearCart } = useCart()
+export default function Carrito() {
+  const { items, totalItems, totalPrice, removerProducto, actualizarQty, limpiarCarrito } = useCart()
   const navigate = useNavigate()
-  const { shipping, tax, total } = getPrices(totalPrice)
+  const { shipping, tax, total } = obtenerPrecios(totalPrice)
 
   if (items.length === 0) {
     return (
@@ -53,19 +53,19 @@ export default function Cart() {
               </div>
 
               <div className="cart-qty-control">
-                <button className="cart-qty-btn" onClick={() => updateQty(product.id, quantity - 1)}>−</button>
+                <button className="cart-qty-btn" onClick={() => actualizarQty(product.id, quantity - 1)}>−</button>
                 <span className="cart-qty-num">{quantity}</span>
-                <button className="cart-qty-btn cart-qty-btn--no-left" onClick={() => updateQty(product.id, quantity + 1)}>+</button>
+                <button className="cart-qty-btn cart-qty-btn--no-left" onClick={() => actualizarQty(product.id, quantity + 1)}>+</button>
               </div>
 
               <span className="cart-item-price">L{(product.price * quantity).toFixed(2)}</span>
 
-              <button className="cart-remove-btn" onClick={() => removeItem(product.id)}>×</button>
+              <button className="cart-remove-btn" onClick={() => removerProducto(product.id)}>×</button>
             </div>
           ))}
 
           <div className="cart-clear-row">
-            <button onClick={clearCart} className="cart-clear-btn">
+            <button onClick={limpiarCarrito} className="cart-clear-btn">
               Vaciar carrito
             </button>
           </div>

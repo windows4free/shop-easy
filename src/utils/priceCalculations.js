@@ -1,21 +1,21 @@
-export function calculateShipping(subtotal) {
+export function calcularEnvio(subtotal) {
   return subtotal > 50 ? 0 : 5.99
 }
 
-export function calculateTax(subtotal) {
+export function calcularImpuesto(subtotal) {
   return subtotal * 0.13
 }
 
-export function calculateTotal(subtotal) {
-  const shipping = calculateShipping(subtotal)
-  const tax = calculateTax(subtotal)
-  return subtotal + shipping + tax
+export function calcularTotal(subtotal) {
+  const envio = calcularEnvio(subtotal)
+  const impuesto = calcularImpuesto(subtotal)
+  return subtotal + envio + impuesto
 }
 
-export function getPrices(subtotal) {
+export function obtenerPrecios(subtotal) {
   return {
-    shipping: calculateShipping(subtotal),
-    tax: calculateTax(subtotal),
-    total: calculateTotal(subtotal),
+    shipping: calcularEnvio(subtotal),
+    tax: calcularImpuesto(subtotal),
+    total: calcularTotal(subtotal),
   }
 }

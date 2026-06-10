@@ -2,9 +2,9 @@ import { Navigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext.jsx'
 
 export default function ProtectedRoute({ children }) {
-  const { currentUser, isLoading } = useAuth()
+  const { usuarioActual, estaCargando } = useAuth()
 
-  if (isLoading) return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>Cargando...</div>
-  if (!currentUser) return <Navigate to="/auth" replace />
+  if (estaCargando) return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>Cargando...</div>
+  if (!usuarioActual) return <Navigate to="/auth" replace />
   return children
 }

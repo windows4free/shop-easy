@@ -1,9 +1,9 @@
-import '../../styles/components/checkout/ShippingForm.css'
+import '../../styles/components/checkout/FormularioEnvio.css'
 
-const COUNTRIES = ['Honduras', 'Guatemala', 'El Salvador', 'Nicaragua', 'Costa Rica', 'Panamá', 'México']
+const PAISES = ['Honduras', 'Guatemala', 'El Salvador', 'Nicaragua', 'Costa Rica', 'Panamá', 'México']
 
 export default function ShippingForm({ form, errors, onChange, onNext }) {
-  const field = (name, placeholder) => (
+  const campo = (name, placeholder) => (
     <>
       <input
         className={errors[name] ? 'sf-input--error' : 'sf-input'}
@@ -23,17 +23,17 @@ export default function ShippingForm({ form, errors, onChange, onNext }) {
         <div className="sf-row-2">
           <div>
             <label className="sf-label">Nombre</label>
-            {field('firstName')}
+            {campo('firstName')}
           </div>
           <div>
             <label className="sf-label">Apellido</label>
-            {field('lastName')}
+            {campo('lastName')}
           </div>
         </div>
 
         <div className="sf-row-1">
           <label className="sf-label">Correo electrónico</label>
-          {field('email', 'tu@correo.com')}
+          {campo('email', 'tu@correo.com')}
         </div>
       </div>
 
@@ -42,17 +42,17 @@ export default function ShippingForm({ form, errors, onChange, onNext }) {
 
         <div className="sf-row-1">
           <label className="sf-label">Dirección</label>
-          {field('address', 'Calle, número, colonia')}
+          {campo('address', 'Calle, número, colonia')}
         </div>
 
         <div className="sf-row-2">
           <div>
             <label className="sf-label">Ciudad</label>
-            {field('city')}
+            {campo('city')}
           </div>
           <div>
             <label className="sf-label">Código postal</label>
-            {field('zip')}
+            {campo('zip')}
           </div>
         </div>
 
@@ -63,7 +63,7 @@ export default function ShippingForm({ form, errors, onChange, onNext }) {
             value={form.country}
             onChange={e => onChange({ ...form, country: e.target.value })}
           >
-            {COUNTRIES.map(c => <option key={c}>{c}</option>)}
+            {PAISES.map(c => <option key={c}>{c}</option>)}
           </select>
         </div>
       </div>

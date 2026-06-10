@@ -2,17 +2,17 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useCart } from '../context/CartContext.jsx'
 import { fetchProducts } from '../data/products.js'
-import '../styles/pages/Home.css'
+import '../styles/pages/Inicio.css'
 
-export default function Home() {
-  const { addItem } = useCart()
-  const [featured, setFeatured] = useState([])
-  const [loading,  setLoading]  = useState(true)
+export default function Inicio() {
+  const { agregarProducto } = useCart()
+  const [productosDestacados, setProductosDestacados] = useState([])
+  const [estaCargando,  setEstaCargando]  = useState(true)
 
   useEffect(() => {
     fetchProducts().then(data => {
-      setFeatured(data.filter(p => p.featured))
-      setLoading(false)
+      setProductosDestacados(data.filter(p => p.featured))
+      setEstaCargando(false)
     })
   }, [])
 
@@ -31,11 +31,11 @@ export default function Home() {
           <Link to="/catalog" className="home-section-link">Ver todos →</Link>
         </div>
 
-        {loading ? (
+        {estaCargando ? (
           <p style={{ fontSize: '13px', color: '#a3a3a3' }}>Cargando productos...</p>
         ) : (
           <div className="home-grid home-grid--3">
-            {featured.map(product => (
+            {productosDestacados.map(product => (
               <div key={product.id} className="home-card">
                 <Link to={`/product/${product.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                   <img
@@ -52,7 +52,7 @@ export default function Home() {
                 </Link>
                 <div className="home-card-footer">
                   <span className="home-price">L{product.price.toFixed(2)}</span>
-                  <button className="home-add-btn" onClick={() => addItem(product)}>
+                  <button className="home-add-btn" onClick={() => agregarProducto(product)}>
                     + Carrito
                   </button>
                 </div>
