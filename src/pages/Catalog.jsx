@@ -1,33 +1,54 @@
-import { useState, useMemo } from 'react'
-import { PRODUCTS, CATEGORIES } from '../data/products.js'
+import { useState, useMemo, useEffect } from 'react'
+import { fetchProducts } from '../data/products.js'
 import ProductCard from '../components/ProductCard.jsx'
 import '../styles/pages/Catalog.css'
 
 export default function Catalog() {
+  const [products,       setProducts]       = useState([])
+  const [loading,        setLoading]        = useState(true)
   const [activeCategory, setActiveCategory] = useState('Todos')
-  const [sort, setSort] = useState('default')
+  const [sort,           setSort]           = useState('default')
+
+  useEffect(() => {
+    fetchProducts().then(data => {
+      setProducts(data)
+      setLoading(false)
+    })
+  }, [])
+
+  const categories = ['Todos', ...new Set(products.map(p => p.category))]
 
   const filtered = useMemo(() => {
     let list = activeCategory === 'Todos'
-      ? PRODUCTS
-      : PRODUCTS.filter(p => p.category === activeCategory)
+      ? products
+      : products.filter(p => p.category === activeCategory)
 
     if (sort === 'price-asc')  return [...list].sort((a, b) => a.price - b.price)
     if (sort === 'price-desc') return [...list].sort((a, b) => b.price - a.price)
     if (sort === 'name')       return [...list].sort((a, b) => a.name.localeCompare(b.name))
     return list
-  }, [activeCategory, sort])
+  }, [products, activeCategory, sort])
+
+  if (loading) {
+    return (
+      <div className="catalog-page">
+        <div className="catalog-header">
+          <p className="catalog-subtitle">Cargando productos...</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="catalog-page">
       <div className="catalog-header">
         <h1 className="catalog-title">Catálogo</h1>
-        <p className="catalog-subtitle">{PRODUCTS.length} productos disponibles</p>
+        <p className="catalog-subtitle">{products.length} productos disponibles</p>
       </div>
 
       <div className="catalog-toolbar">
         <div className="catalog-filters">
-          {['Todos', ...CATEGORIES].map(cat => (
+          {categories.map(cat => (
             <button
               key={cat}
               className={activeCategory === cat ? 'catalog-filter-btn--active' : 'catalog-filter-btn'}

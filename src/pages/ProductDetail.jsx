@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { PRODUCTS } from '../data/products.js'
+import { supabase } from '../data/supabase.js'
 import { useCart } from '../context/CartContext.jsx'
 import '../styles/pages/ProductDetail.css'
 
@@ -8,10 +8,31 @@ export default function ProductDetail() {
   const { id }      = useParams()
   const navigate    = useNavigate()
   const { addItem } = useCart()
-  const product     = PRODUCTS.find(p => p.id === Number(id))
 
-  const [qty,   setQty]   = useState(1)
-  const [toast, setToast] = useState(false)
+  const [product, setProduct] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [qty,     setQty]     = useState(1)
+  const [toast,   setToast]   = useState(false)
+
+  useEffect(() => {
+    supabase
+      .from('products')
+      .select('*')
+      .eq('id', Number(id))
+      .single()
+      .then(({ data, error }) => {
+        if (!error) setProduct(data)
+        setLoading(false)
+      })
+  }, [id])
+
+  if (loading) {
+    return (
+      <div className="detail-page">
+        <p style={{ color: '#a3a3a3', fontSize: '13px' }}>Cargando producto...</p>
+      </div>
+    )
+  }
 
   if (!product) {
     return (

@@ -41,7 +41,11 @@ export default function Cart() {
           {items.map(({ product, quantity }) => (
             <div key={product.id} className="cart-item-row">
               <div className="cart-item-info">
-                <div className="cart-item-emoji">{product.emoji}</div>
+                 <img
+                    src={`/images/${product.image}`}
+                    alt={product.name}
+                    style={{ width: '48px', height: '48px', objectFit: 'cover', borderRadius: '2px', background: '#f5f5f5' }}
+                  />
                 <div>
                   <Link to={`/product/L{product.id}`} className="cart-item-name">
                     {product.name}

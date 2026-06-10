@@ -1,0 +1,149 @@
+.tx-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 2rem 4rem;
+}
+
+.tx-header {
+  padding: 2.5rem 0 2rem;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 2rem;
+}
+
+.tx-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.4rem;
+  color: #0f0f0f;
+}
+
+.tx-subtitle {
+  font-size: 13px;
+  color: #a3a3a3;
+}
+
+/* Resumen */
+.tx-summary {
+  display: flex;
+  gap: 1px;
+  background: #e5e5e5;
+  margin-bottom: 2rem;
+}
+
+.tx-summary-item {
+  flex: 1;
+  background: #fafafa;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tx-summary-label {
+  font-size: 11px;
+  color: #a3a3a3;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.tx-summary-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: #0f0f0f;
+}
+
+/* Tabla */
+.tx-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid #e5e5e5;
+  border-radius: 2px;
+}
+
+.tx-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tx-th {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #a3a3a3;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e5e5e5;
+  text-align: left;
+  background: #f5f5f5;
+  white-space: nowrap;
+}
+
+.tx-row { background: #fafafa; }
+.tx-row--alt { background: #f9f9f9; }
+
+.tx-td {
+  font-size: 13px;
+  color: #525252;
+  padding: 1rem;
+  border-bottom: 1px solid #f5f5f5;
+  vertical-align: top;
+}
+
+.tx-td--mono {
+  font-family: monospace;
+  font-size: 11px;
+  color: #a3a3a3;
+}
+
+.tx-td--amount {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  color: #0f0f0f;
+  white-space: nowrap;
+}
+
+.tx-td--date {
+  font-size: 12px;
+  color: #a3a3a3;
+  white-space: nowrap;
+}
+
+.tx-client-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: #0f0f0f;
+  margin-bottom: 2px;
+}
+
+.tx-client-email {
+  font-size: 11px;
+  color: #a3a3a3;
+}
+
+.tx-method {
+  display: inline-block;
+  font-size: 11px;
+  border: 1px solid #e5e5e5;
+  padding: 2px 8px;
+  border-radius: 2px;
+  color: #525252;
+}
+
+.tx-product-row {
+  font-size: 12px;
+  color: #525252;
+  margin-bottom: 2px;
+}
+
+.tx-product-qty {
+  color: #a3a3a3;
+  font-size: 11px;
+}
+
+.tx-loading,
+.tx-empty {
+  text-align: center;
+  padding: 3rem;
+  font-size: 13px;
+  color: #a3a3a3;
+}

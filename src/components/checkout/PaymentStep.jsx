@@ -2,8 +2,8 @@ import PayPalButton from '../PayPalButton.jsx'
 import '../../styles/components/checkout/PaymentStep.css'
 
 const METHODS = [
-  { id: 'paypal', label: '🅿 PayPal' },
-  { id: 'cash',   label: '💵 Contra entrega' },
+  { id: 'paypal', label: 'PayPal' },
+  { id: 'cash',   label: 'Contra entrega' },
 ]
 
 export default function PaymentStep({
@@ -35,10 +35,6 @@ export default function PaymentStep({
 
         {payMethod === 'paypal' && (
           <>
-            <div className="ps-sandbox-note">
-              🔒 <strong>Sandbox de PayPal</strong> — Usa una cuenta de prueba de PayPal.<br />
-              Inicia sesión con tu cuenta sandbox en el popup que aparece.
-            </div>
             <PayPalButton
               amount={total}
               onSuccess={onPayPalSuccess}

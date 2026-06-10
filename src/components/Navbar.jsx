@@ -15,6 +15,7 @@ export default function Navbar() {
         {[
           { to: '/',        label: 'Inicio'   },
           { to: '/catalog', label: 'Catálogo' },
+          { to: '/transactions', label: 'Tus Compras' },
         ].map(({ to, label }) => (
           <li key={to}>
             <NavLink

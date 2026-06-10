@@ -1,12 +1,20 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useCart } from '../context/CartContext.jsx'
-import { PRODUCTS } from '../data/products.js'
+import { fetchProducts } from '../data/products.js'
 import '../styles/pages/Home.css'
-
-const FEATURED = PRODUCTS.filter(p => p.featured)
 
 export default function Home() {
   const { addItem } = useCart()
+  const [featured, setFeatured] = useState([])
+  const [loading,  setLoading]  = useState(true)
+
+  useEffect(() => {
+    fetchProducts().then(data => {
+      setFeatured(data.filter(p => p.featured))
+      setLoading(false)
+    })
+  }, [])
 
   return (
     <>
@@ -27,31 +35,35 @@ export default function Home() {
           <Link to="/catalog" className="home-section-link">Ver todos →</Link>
         </div>
 
-        <div className="home-grid home-grid--3">
-          {FEATURED.map(product => (
-            <div key={product.id} className="home-card">
-              <Link to={`/product/${product.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                <img
-                  src={`/images/${product.image}`}
-                  alt={product.name}
-                  className="home-card-img"
-                  loading="lazy"
-                  decoding="async"
-                  width={400}
-                  height={400}
-                />
-                <div className="home-card-cat">{product.category}</div>
-                <div className="home-card-name">{product.name}</div>
-              </Link>
-              <div className="home-card-footer">
-                <span className="home-price">L{product.price.toFixed(2)}</span>
-                <button className="home-add-btn" onClick={() => addItem(product)}>
-                  + Carrito
-                </button>
+        {loading ? (
+          <p style={{ fontSize: '13px', color: '#a3a3a3' }}>Cargando productos...</p>
+        ) : (
+          <div className="home-grid home-grid--3">
+            {featured.map(product => (
+              <div key={product.id} className="home-card">
+                <Link to={`/product/${product.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <img
+                    src={`/images/${product.image}`}
+                    alt={product.name}
+                    className="home-card-img"
+                    loading="lazy"
+                    decoding="async"
+                    width={400}
+                    height={400}
+                  />
+                  <div className="home-card-cat">{product.category}</div>
+                  <div className="home-card-name">{product.name}</div>
+                </Link>
+                <div className="home-card-footer">
+                  <span className="home-price">L{product.price.toFixed(2)}</span>
+                  <button className="home-add-btn" onClick={() => addItem(product)}>
+                    + Carrito
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </>
   )

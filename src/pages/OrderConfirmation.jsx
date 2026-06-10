@@ -1,20 +1,41 @@
 import { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { supabase } from '../data/supabase.js'
 import '../styles/pages/OrderConfirmation.css'
 
 const PAY_LABELS = {
   card:   'Tarjeta de crédito/débito',
+  paypal: 'PayPal',
+  cash:   'Contra entrega',
+}
+
+async function saveOrderToSupabase(order) {
+  try {
+    await supabase.from('orders').insert([{
+      id:            order.id,
+      items:         order.items,
+      shipping:      order.shipping,
+      payment:       order.payment,
+      subtotal:      order.subtotal,
+      shipping_cost: order.shippingCost,
+      tax:           order.tax,
+      total:         order.total,
+    }])
+  } catch (err) {
+    console.warn('No se pudo guardar la orden:', err.message)
+  }
 }
 
 export default function OrderConfirmation() {
-  const navigate = useNavigate()
   const [order, setOrder] = useState(null)
 
   useEffect(() => {
     const raw = sessionStorage.getItem('shopeasy_order')
     if (!raw) return
-    setOrder(JSON.parse(raw))
+    const parsed = JSON.parse(raw)
+    setOrder(parsed)
     sessionStorage.removeItem('shopeasy_order')
+    saveOrderToSupabase(parsed)
   }, [])
 
   if (!order) {
@@ -54,7 +75,11 @@ export default function OrderConfirmation() {
                   key={product.id}
                   className={`order-item-row${i === order.items.length - 1 ? ' order-item-row--last' : ''}`}
                 >
-                  <div className="order-item-emoji">{product.emoji}</div>
+                  <img
+                    src={`/images/${product.image}`}
+                    alt={product.name}
+                    style={{ width: '48px', height: '48px', objectFit: 'cover', borderRadius: '2px', background: '#f5f5f5' }}
+                  />
                   <div className="order-item-info">
                     <div className="order-item-name">{product.name}</div>
                     <div className="order-item-cat">{product.category}</div>
@@ -112,7 +137,7 @@ export default function OrderConfirmation() {
           <div className="order-summary-header">Resumen de la orden</div>
           <div className="order-summary-body">
             <div className="order-summary-row"><span>Subtotal</span><span>L{order.subtotal.toFixed(2)}</span></div>
-            <div className="order-summary-row"><span>Envío</span><span>{order.shippingCost === 0 ? 'Gratis' : `$${order.shippingCost.toFixed(2)}`}</span></div>
+            <div className="order-summary-row"><span>Envío</span><span>{order.shippingCost === 0 ? 'Gratis' : `L${order.shippingCost.toFixed(2)}`}</span></div>
             <div className="order-summary-row"><span>Impuesto (13%)</span><span>L{order.tax.toFixed(2)}</span></div>
             <hr className="order-divider" />
             <div className="order-total-row"><span>Total</span><span>L{order.total.toFixed(2)}</span></div>
@@ -120,10 +145,27 @@ export default function OrderConfirmation() {
               <Link to="/" className="order-btn-primary">Volver al inicio</Link>
               <Link to="/catalog" className="order-btn-outline">Seguir comprando</Link>
             </div>
-            
           </div>
         </div>
       </div>
     </div>
   )
+  async function saveOrderToSupabase(order) {
+  const { data, error } = await supabase.from('orders').insert([{
+    id:            order.id,
+    items:         order.items,
+    shipping:      order.shipping,
+    payment:       order.payment,
+    subtotal:      order.subtotal,
+    shipping_cost: order.shippingCost,
+    tax:           order.tax,
+    total:         order.total,
+  }]).select()
+
+  if (error) {
+    console.error('Error Supabase:', error)
+  } else {
+    console.log('Orden guardada:', data)
+  }
+}
 }

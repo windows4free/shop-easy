@@ -27,7 +27,6 @@ export default function OrderSummary({ items, subtotal, shipping, tax, total }) 
 
       <div className="os-total-row"><span>Total</span><span>L{total.toFixed(2)}</span></div>
 
-      <p className="os-secure-note">🔒 Pago seguro · PayPal Sandbox</p>
     </div>
   )
 }

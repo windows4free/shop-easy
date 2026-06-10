@@ -9,6 +9,7 @@ import Cart from './pages/Cart.jsx'
 import Checkout from './pages/Checkout.jsx'
 import OrderConfirmation from './pages/OrderConfirmation.jsx'
 import { NotFound } from './pages/_stubs.jsx'
+import Transactions from './pages/Transactions.jsx'
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="/cart"               element={<Cart />} />
           <Route path="/checkout"           element={<Checkout />} />
           <Route path="/order-confirmation" element={<OrderConfirmation />} />
+          <Route path="/transactions" element={<Transactions />} />
           <Route path="*"                   element={<NotFound />} />
         </Routes>
       </main>
