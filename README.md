@@ -29,8 +29,8 @@
 | **React Router DOM** | Navegación entre páginas |
 | **Context API** | Manejo del estado del carrito |
 | **Tailwind CSS** | Estilos y diseño responsivo |
-| **JSON Server** | Backend simulado (mock API) |
-| **Stripe.js (sandbox)** | Simulación de pagos |
+| **Supabase** | Backend |
+| **Paypal Sandbox** | Simulación de pagos |
 
 ---
 
@@ -43,11 +43,8 @@
 | Reinaldo Izaguirre
 | Kenneth Urbina 
 | Maria Elena Calix 
-| Marbely Fonseca 
 
----
 
-## Licencia
 
 Este proyecto fue desarrollado con fines académicos.  
 © 2025 ShopEasy Team — Sala 14

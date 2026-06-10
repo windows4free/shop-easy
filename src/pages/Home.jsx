@@ -19,9 +19,7 @@ export default function Home() {
   return (
     <>
       <div className="home-page">
-        {/* Hero */}
         <section className="home-hero">
-          <span className="home-tag">Prototipo académico · Sala 14</span>
           <h1 className="home-h1">Tu tienda,<br />sin complicaciones.</h1>
           <div className="home-cta">
             <Link to="/catalog" className="btn btn-primary">Ver catálogo</Link>
@@ -29,7 +27,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Featured products */}
         <div className="home-section-header">
           <span className="home-section-title">Destacados</span>
           <Link to="/catalog" className="home-section-link">Ver todos →</Link>

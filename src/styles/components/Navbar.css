@@ -51,6 +51,12 @@
   text-decoration: none;
 }
 
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .navbar-cart-btn {
   display: flex;
   align-items: center;
@@ -82,3 +88,49 @@
   font-size: 10px;
   font-weight: 700;
 }
+
+.navbar-loading {
+  font-size: 14px;
+  color: #525252;
+}
+
+.navbar-user-name {
+  font-size: 13px;
+  color: #0f0f0f;
+  font-weight: 500;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.navbar-login-btn {
+  background: #0f0f0f;
+  color: #fafafa;
+  padding: 6px 16px;
+  border-radius: 2px;
+  font-size: 13px;
+  text-decoration: none;
+  transition: opacity 150ms;
+  display: inline-block;
+}
+
+.navbar-login-btn:hover {
+  opacity: 0.82;
+}
+
+.navbar-logout-btn {
+  background: #0f0f0f;
+  color: #fafafa;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 2px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: opacity 150ms;
+}
+
+.navbar-logout-btn:hover {
+  opacity: 0.82;
+}
+

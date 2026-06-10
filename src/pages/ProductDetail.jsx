@@ -100,7 +100,7 @@ export default function ProductDetail() {
             {[
               ['Disponibilidad', `${product.stock} unidades`],
               ['Categoría',      product.category],
-              ['Envío',          'Gratis (simulado)'],
+              ['Envío',          'Gratis'],
               ['Devoluciones',   '30 días'],
             ].map(([k, v]) => (
               <div key={k} className="detail-meta-row">

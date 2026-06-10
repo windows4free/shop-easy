@@ -13,7 +13,6 @@ export default function Footer() {
           Shop<span className="footer-logo-gray">Easy</span>
         </div>
         <div className="footer-right">
-          <div>Prototipo académico · Sala 14 · Planteamiento #8</div>
           <div className="footer-team">
             {TEAM.map(m => <span key={m} className="footer-member">{m}</span>)}
           </div>

@@ -1,12 +1,10 @@
-/* ProductDetail.css */
-
 .detail-page {
   max-width: 1100px;
   margin: 0 auto;
   padding: 2rem 2rem 4rem;
 }
 
-/* Breadcrumb */
+
 .detail-breadcrumb {
   display: flex;
   gap: 8px;
@@ -169,7 +167,7 @@
   border-color: #0f0f0f;
 }
 
-/* Meta */
+
 .detail-meta {
   margin-top: 1.5rem;
   padding-top: 1.5rem;
@@ -193,7 +191,7 @@
   color: #0f0f0f;
 }
 
-/* Toast */
+
 .detail-toast {
   position: fixed;
   bottom: 2rem;
@@ -206,27 +204,5 @@
   z-index: 999;
 }
 
-/* 404 */
-.detail-404 {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 5rem 0;
-  text-align: center;
-}
 
-.detail-404-num {
-  font-family: 'Playfair Display', serif;
-  font-size: 3rem;
-  color: #e5e5e5;
-}
 
-.detail-404-text {
-  color: #525252;
-  margin-bottom: 1.5rem;
-}
-
-.detail-404-link {
-  font-size: 13px;
-  border-bottom: 1px solid #e5e5e5;
-  padding-bottom: 2px;
-}

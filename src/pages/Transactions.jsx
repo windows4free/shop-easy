@@ -1,32 +1,47 @@
 import { useEffect, useState } from 'react'
+import { useAuth } from '../context/AuthContext.jsx'
 import { supabase } from '../data/supabase.js'
 import '../styles/pages/Transactions.css'
 
 const METHOD_LABELS = {
-  paypal: 'PayPal',
-  card:   'Tarjeta',
+  paypal: 'Paypal',
+  card:   'Tarjeta de crédito/débito',
+  cash:   'Paga al recibir',
 }
 
 export default function Transactions() {
+  const { currentUser, isAdmin, isLoading: authLoading } = useAuth()
   const [orders,  setOrders]  = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    supabase
-      .from('orders')
-      .select('*')
-      .order('created_at', { ascending: false })
-      .then(({ data, error }) => {
+    if (authLoading) return
+
+    const fetchOrders = async () => {
+      try {
+        let query = supabase.from('orders').select('*')
+
+        if (!isAdmin && currentUser) {
+          query = query.eq('user_id', currentUser.id)
+        }
+
+        const { data, error } = await query.order('created_at', { ascending: false })
+
         if (!error) setOrders(data || [])
+      } catch (err) {
+        console.error('Error fetching orders:', err)
+      } finally {
         setLoading(false)
-      })
-  }, [])
+      }
+    }
+
+    fetchOrders()
+  }, [currentUser, isAdmin, authLoading])
 
   const totalVentas   = orders.reduce((acc, o) => acc + Number(o.total), 0)
-  const totalOrdenes  = orders.length
-  const promedioOrden = totalOrdenes > 0 ? totalVentas / totalOrdenes : 0
+  const totalCompras  = orders.length
 
-  if (loading) {
+  if (loading || authLoading) {
     return (
       <div className="tx-page">
         <p className="tx-loading">Cargando compras...</p>
@@ -34,11 +49,26 @@ export default function Transactions() {
     )
   }
 
+  if (!currentUser) {
+    return (
+      <div className="tx-page">
+        <div className="tx-empty">
+          <h2>Debes iniciar sesión para ver tus compras</h2>
+          <p>Por favor, <a href="/auth">inicia sesión aquí</a></p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="tx-page">
       <div className="tx-header">
-        <h1 className="tx-title">Historial de Compras</h1>
-        <p className="tx-subtitle">{totalOrdenes} órdenes registradas</p>
+        <h1 className="tx-title">
+          {isAdmin ? 'Historial de Compras (Admin)' : 'Mis Compras'}
+        </h1>
+        <p className="tx-subtitle">
+          {totalCompras} {isAdmin ? 'compras totales' : 'compras registradas'}
+        </p>
       </div>
 
       {/* Resumen */}
@@ -48,8 +78,8 @@ export default function Transactions() {
           <span className="tx-summary-val">L{totalVentas.toFixed(2)}</span>
         </div>
         <div className="tx-summary-item">
-          <span className="tx-summary-label">Órdenes</span>
-          <span className="tx-summary-val">{totalOrdenes}</span>
+          <span className="tx-summary-label">Compras</span>
+          <span className="tx-summary-val">{totalCompras}</span>
         </div>
       </div>
 
@@ -94,7 +124,6 @@ export default function Transactions() {
                   <td className="tx-td tx-td--date">
                     {new Date(order.created_at).toLocaleDateString('es-HN', {
                       year: 'numeric', month: 'short', day: 'numeric',
-                      hour: '2-digit', minute: '2-digit',
                     })}
                   </td>
                 </tr>

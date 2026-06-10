@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext.jsx'
+import { useAuth } from '../context/AuthContext.jsx'
 import CheckoutSteps  from '../components/checkout/CheckoutSteps.jsx'
 import ShippingForm   from '../components/checkout/ShippingForm.jsx'
 import PaymentStep    from '../components/checkout/PaymentStep.jsx'
@@ -9,6 +10,7 @@ import '../styles/pages/Checkout.css'
 
 export default function Checkout() {
   const { items, totalPrice, clearCart } = useCart()
+  const { currentUser } = useAuth()
   const navigate = useNavigate()
 
   const shipping = totalPrice > 50 ? 0 : 5.99
@@ -46,6 +48,7 @@ export default function Checkout() {
   function buildOrder(paymentInfo) {
     return {
       id:           paymentInfo.id || `ORD-${Date.now()}`,
+      user_id:      currentUser?.id || null,
       items,
       shipping:     shippingForm,
       payment:      paymentInfo,

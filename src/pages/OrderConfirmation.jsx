@@ -6,7 +6,7 @@ import '../styles/pages/OrderConfirmation.css'
 const PAY_LABELS = {
   card:   'Tarjeta de crédito/débito',
   paypal: 'PayPal',
-  cash:   'Contra entrega',
+  cash:   'Pagar en efectivo',
 }
 
 async function saveOrderToSupabase(order) {
@@ -20,6 +20,7 @@ async function saveOrderToSupabase(order) {
       shipping_cost: order.shippingCost,
       tax:           order.tax,
       total:         order.total,
+      user_id:       order.user_id,
     }])
   } catch (err) {
     console.warn('No se pudo guardar la orden:', err.message)
@@ -52,7 +53,6 @@ export default function OrderConfirmation() {
 
   const date = new Date(order.date).toLocaleDateString('es-HN', {
     year: 'numeric', month: 'long', day: 'numeric',
-    hour: '2-digit', minute: '2-digit',
   })
 
   return (
@@ -66,7 +66,6 @@ export default function OrderConfirmation() {
 
       <div className="order-layout">
         <div>
-          {/* Productos */}
           <div className="order-section">
             <div className="order-section-header">Productos ordenados</div>
             <div className="order-section-body">
@@ -91,7 +90,6 @@ export default function OrderConfirmation() {
             </div>
           </div>
 
-          {/* Envío */}
           <div className="order-section">
             <div className="order-section-header">Información de envío</div>
             <div className="order-section-body">
@@ -111,7 +109,6 @@ export default function OrderConfirmation() {
             </div>
           </div>
 
-          {/* Pago */}
           <div className="order-section">
             <div className="order-section-header">Método de pago</div>
             <div className="order-section-body">
@@ -132,7 +129,6 @@ export default function OrderConfirmation() {
           </div>
         </div>
 
-        {/* Totales */}
         <div className="order-summary-card">
           <div className="order-summary-header">Resumen de la orden</div>
           <div className="order-summary-body">
@@ -160,6 +156,7 @@ export default function OrderConfirmation() {
     shipping_cost: order.shippingCost,
     tax:           order.tax,
     total:         order.total,
+    user_id:       order.user_id,
   }]).select()
 
   if (error) {

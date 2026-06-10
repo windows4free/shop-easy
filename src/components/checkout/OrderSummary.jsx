@@ -7,7 +7,6 @@ export default function OrderSummary({ items, subtotal, shipping, tax, total }) 
 
       {items.map(({ product, quantity }) => (
         <div key={product.id} className="os-item">
-          <span className="os-item-emoji">{product.emoji}</span>
           <span className="os-item-name">{product.name}</span>
           <span className="os-item-qty">×{quantity}</span>
           <span className="os-item-price">L{(product.price * quantity).toFixed(2)}</span>

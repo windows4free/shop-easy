@@ -14,7 +14,6 @@ export default function ShippingForm({ form, errors, onChange, onNext }) {
 
   return (
     <>
-      {/* Contacto */}
       <div className="sf-section">
         <div className="sf-section-title">Información de contacto</div>
 
@@ -38,7 +37,6 @@ export default function ShippingForm({ form, errors, onChange, onNext }) {
         </div>
       </div>
 
-      {/* Dirección */}
       <div className="sf-section">
         <div className="sf-section-title">Dirección de envío</div>
 

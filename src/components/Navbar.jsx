@@ -1,9 +1,17 @@
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext.jsx'
+import { useAuth } from '../context/AuthContext.jsx'
 import '../styles/components/Navbar.css'
 
 export default function Navbar() {
   const { totalItems } = useCart()
+  const { currentUser, isAdmin, logout, isLoading } = useAuth()
+  const navigate = useNavigate()
+
+  const handleLogout = async () => {
+    await logout()
+    navigate('/')
+  }
 
   return (
     <nav className="navbar">
@@ -29,15 +37,33 @@ export default function Navbar() {
         ))}
       </ul>
 
-      <Link to="/cart" className="navbar-cart-btn">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
-          <line x1="3" y1="6" x2="21" y2="6"/>
-          <path d="M16 10a4 4 0 01-8 0"/>
-        </svg>
-        Carrito
-        {totalItems > 0 && <span className="navbar-badge">{totalItems}</span>}
-      </Link>
+      <div className="navbar-right">
+        {!isLoading && currentUser && (
+          <div className="navbar-user-section">
+            <span className="navbar-user-name">
+              {currentUser.user_metadata?.full_name || currentUser.email}
+            </span>
+            {isAdmin && <span className="navbar-admin-badge">Admin</span>}
+          </div>
+        )}
+
+        <Link to="/cart" className="navbar-cart-btn">
+          Carrito
+          {totalItems > 0 && <span className="navbar-badge">{totalItems}</span>}
+        </Link>
+
+        {isLoading ? (
+          <span className="navbar-loading">...</span>
+        ) : currentUser ? (
+          <button onClick={handleLogout} className="navbar-logout-btn">
+            Logout
+          </button>
+        ) : (
+          <Link to="/auth" className="navbar-login-btn">
+            Login
+          </Link>
+        )}
+      </div>
     </nav>
   )
 }

@@ -3,7 +3,7 @@ import '../../styles/components/checkout/PaymentStep.css'
 
 const METHODS = [
   { id: 'paypal', label: 'PayPal' },
-  { id: 'cash',   label: 'Contra entrega' },
+  { id: 'cash',   label: 'Pagar al recibir' },
 ]
 
 export default function PaymentStep({
